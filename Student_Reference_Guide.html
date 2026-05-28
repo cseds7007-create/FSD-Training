@@ -356,6 +356,128 @@
             display: inline-block;
             margin: 10px 0;
         }
+
+        /* Interactive Dropdown Menu Styles */
+        .file-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .file-item:hover {
+            background: #e8f5e9;
+            padding-left: 12px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .file-item-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .file-item-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .dropdown-indicator {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-indicator.expanded {
+            transform: rotate(180deg);
+        }
+
+        .file-sublist {
+            background: #fafafa;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 8px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .file-sublist.show {
+            max-height: 500px;
+            padding: 8px;
+        }
+
+        .file-subitem {
+            padding: 6px 10px;
+            margin: 4px 0;
+            background: white;
+            border-left: 3px solid #667eea;
+            border-radius: 3px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-subitem:hover {
+            background: #e3f2fd;
+            padding-left: 14px;
+        }
+
+        .file-link-icon {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            margin-left: 8px;
+            color: #667eea;
+            font-size: 0.9em;
+        }
+
+        .file-subitem:hover .file-link-icon {
+            opacity: 1;
+        }
+
+        .config-banner {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+
+        .config-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .config-input-group input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .config-input-group button {
+            padding: 8px 16px;
+            background: #ffc107;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .config-input-group button:hover {
+            background: #e0a800;
+        }
         
         @media (max-width: 768px) {
             header h1 {
@@ -405,6 +527,14 @@
             <button class="nav-btn" onclick="showDay(9)">Day 9</button>
             <button class="nav-btn" onclick="showDay(10)">Day 10</button>
         </div>
+
+        <div class="config-banner">
+            <strong>⚙️ Configuration:</strong> Set your hosting URL below. Once deployed to Netlify or GitHub Pages, enter the URL here to enable all file links.
+            <div class="config-input-group">
+                <input type="text" id="baseURLInput" placeholder="e.g., https://your-site.netlify.app or https://username.github.io/repo">
+                <button onclick="setBaseURL()">💾 Save URL</button>
+            </div>
+        </div>
         
         <div class="content">
             <!-- DAY 1 -->
@@ -436,8 +566,27 @@
                         <div class="folder-path">Day 1/Excersies/</div>
                         <p style="color: #666; margin-top: 10px;">Start with these foundational exercises:</p>
                         <div class="file-list">
-                            <div class="file-item"><strong>1.1 Heading Element</strong> - Learn HTML heading tags (h1-h6)</div>
-                            <div class="file-item"><strong>1.2 Paragraph Element</strong> - Understand text content and paragraphs</div>
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.1 Heading Element</strong> - Learn HTML heading tags (h1-h6)
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Excersies/1.1%20Heading%20Element/index.html')">
+                                    <span>📄 View Exercise</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.2 Paragraph Element</strong> - Understand text content and paragraphs
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Excersies/1.2%20Paragraph%20Element/index.html')">
+                                    <span>📄 View Exercise</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -449,7 +598,16 @@
                         <div class="folder-path">Day 1/Projects/</div>
                         <p style="color: #666; margin-top: 10px;">Apply your learning in projects:</p>
                         <div class="file-list">
-                            <div class="file-item"><strong>1.3 Movie Ranking Project</strong> - Create a movie ranking webpage using HTML</div>
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.3 Movie Ranking Project</strong> - Create a movie ranking webpage using HTML
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Projects/1.3%20Movie%20Ranking%20Project/index.html')">
+                                    <span>📄 View Project</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
                         </div>
                         <span class="badge">Practice Project</span>
                     </div>
@@ -462,7 +620,16 @@
                         <div class="folder-path">Day 1/Challenges/</div>
                         <p style="color: #666; margin-top: 10px;">Test your skills with challenges:</p>
                         <div class="file-list">
-                            <div class="file-item"><strong>Resume Challenge</strong> - Build a resume webpage</div>
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Resume Challenge</strong> - Build a resume webpage
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Challenges/Resume_challenge.html')">
+                                    <span>📄 View Challenge</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
                         </div>
                         <span class="badge">in-progress">Challenge</span>
                     </div>
@@ -475,9 +642,38 @@
                         <div class="folder-path">Day 1/Practicals/</div>
                         <p style="color: #666; margin-top: 10px;">Additional learning materials:</p>
                         <div class="file-list">
-                            <div class="file-item"><strong>First_HTML_webpage.html</strong> - Introduction to HTML structure</div>
-                            <div class="file-item"><strong>Headings_Paragraph.html</strong> - Practical examples</div>
-                            <div class="file-item"><strong>Personal_intro_Page.html</strong> - Create your personal intro page</div>
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>First_HTML_webpage.html</strong> - Introduction to HTML structure
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/First_HTML_webpage.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Headings_Paragraph.html</strong> - Practical examples
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/Headings_Paragraph.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Personal_intro_Page.html</strong> - Create your personal intro page
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/Personal_intro_Page.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1087,7 +1283,7 @@
             </div>
         </div>
         
-        <div class="netlify-section">
+        <!-- <div class="netlify-section">
             <h4>🚀 Deploy Your Learning Portal on Netlify</h4>
             <p><strong>How to Deploy This Folder:</strong></p>
             <ol style="margin-left: 20px; color: #555;">
@@ -1101,19 +1297,46 @@
             </ol>
             <p style="margin-top: 15px; color: #2e7d32;"><strong>✅ Once deployed, all files will be accessible from the Netlify URL</strong></p>
             <p style="color: #666; margin-top: 10px;"><strong>Tip:</strong> Every time you update this folder, run <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">netlify deploy --prod</code> again to push updates to your live site.</p>
-        </div>
+        </div> -->
         
         <footer>
             <p><strong>📝 Quick Reference Guide for Full Stack Training</strong></p>
             <p>📚 <strong>Learning Sequence:</strong> Exercises → Projects → Challenges → Practicals</p>
             <p>📂 <strong>Folder Structure:</strong> Each Day has Exercise, Project, Challenge, and Practical folders</p>
             <p>✅ <strong>Complete all exercises first</strong> before moving to projects for best learning outcomes</p>
-            <p>🚀 <strong>Deployed on Netlify</strong> - All files are accessible online after deployment</p>
+            <p>🚀 <strong>Deployment Options:</strong> 
+                <a href="DEPLOYMENT_GUIDE.md" style="color: #667eea; text-decoration: none; font-weight: bold;">View Complete Guide</a> 
+                | Netlify (Recommended) | GitHub Pages | Auto-Deploy on Git Push
+            </p>
             <p style="margin-top: 15px; color: #999;">Last Updated: May 2026 | Questions? Refer to the materials in each day's folder</p>
         </footer>
     </div>
     
     <script>
+        // ===== CONFIGURATION =====
+        // Change this to your Netlify URL or GitHub Pages URL
+        let baseURL = localStorage.getItem('baseURL') || 'https://your-netlify-site.netlify.app';
+
+        function setBaseURL() {
+            const newURL = document.getElementById('baseURLInput').value.trim();
+            if (newURL) {
+                baseURL = newURL;
+                localStorage.setItem('baseURL', newURL);
+                alert('Base URL updated successfully!\n\nNow all file links will point to:\n' + baseURL);
+                location.reload();
+            } else {
+                alert('Please enter a valid URL');
+            }
+        }
+
+        // Update input field on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('baseURLInput');
+            if (input) {
+                input.value = baseURL;
+            }
+        });
+
         function showDay(dayNum) {
             // Hide all day sections
             for (let i = 1; i <= 10; i++) {
@@ -1136,6 +1359,36 @@
             // Scroll to top
             document.querySelector('.content').scrollTop = 0;
         }
+
+        // Dropdown Toggle Functionality
+        function toggleDropdown(element) {
+            const parentItem = element.closest('.file-item');
+            const sublist = parentItem.nextElementSibling;
+            const indicator = element.querySelector('.dropdown-indicator');
+
+            if (sublist && sublist.classList.contains('file-sublist')) {
+                sublist.classList.toggle('show');
+                indicator.classList.toggle('expanded');
+            }
+        }
+
+        // Open hosted file
+        function openHostedFile(event, filePath) {
+            event.stopPropagation();
+            const fullURL = baseURL.replace(/\/$/, '') + '/' + filePath;
+            window.open(fullURL, '_blank');
+        }
+
+        // Initialize file items with dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileItems = document.querySelectorAll('.file-item[data-expandable="true"]');
+            fileItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (e.target.closest('.file-item-link')) return;
+                    toggleDropdown(this);
+                });
+            });
+        });
     </script>
 </body>
 </html>
