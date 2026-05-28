@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Calculator Programs</title>
+
+    <style>
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#eef2f7;
+            margin:0;
+            padding:40px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            color:#111827;
+        }
+
+        textarea{
+            width:100%;
+            height:300px;
+            margin-top:20px;
+            padding:20px;
+            font-size:16px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            font-family:monospace;
+        }
+
+        button{
+            margin-top:20px;
+            padding:15px 30px;
+            border:none;
+            background:#2563eb;
+            color:white;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        iframe{
+            width:100%;
+            height:250px;
+            margin-top:20px;
+            border:2px solid #ccc;
+            border-radius:10px;
+            background:white;
+        }
+
+        .concept{
+            background:#dbeafe;
+            padding:20px;
+            border-radius:10px;
+            margin-top:20px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Calculator Programs</h1>
+
+            <div class="concept">
+
+                <h2>Concept</h2>
+
+                <p>
+                    JavaScript can perform arithmetic operations
+                    like addition, subtraction, multiplication
+                    and division using operators.
+                </p>
+
+            </div>
+
+<textarea id="code">
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Simple Calculator</h2>
+
+<script>
+
+let a = 10;
+let b = 5;
+
+document.write("Addition: " + (a+b) + "<br>");
+document.write("Subtraction: " + (a-b) + "<br>");
+document.write("Multiplication: " + (a*b) + "<br>");
+document.write("Division: " + (a/b));
+
+</script>
+
+</body>
+</html>
+</textarea>
+
+            <button onclick="runCode()">
+                Run Program
+            </button>
+
+            <iframe id="output"></iframe>
+
+        </div>
+
+    </div>
+
+<script>
+
+function runCode(){
+
+    let code = document.getElementById("code").value;
+
+    let output = document.getElementById("output");
+
+    output.srcdoc = code;
+
+}
+
+</script>
+
+</body>
+</html>

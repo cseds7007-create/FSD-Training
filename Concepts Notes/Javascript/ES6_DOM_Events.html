@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern JavaScript Learning Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    color:white;
+    line-height:1.7;
+}
+
+header{
+    padding:40px;
+    text-align:center;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+header h1{
+    font-size:3rem;
+}
+
+header p{
+    margin-top:10px;
+    color:#dbeafe;
+}
+
+.container{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    padding:40px 0;
+}
+
+.section{
+    margin-bottom:60px;
+}
+
+.section-title{
+    font-size:2rem;
+    margin-bottom:20px;
+    color:#60a5fa;
+    border-left:6px solid #3b82f6;
+    padding-left:15px;
+}
+
+.card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card h3{
+    color:#facc15;
+    margin-bottom:15px;
+}
+
+.card p{
+    margin-bottom:15px;
+    color:#cbd5e1;
+}
+
+.code{
+    background:#0f172a;
+    padding:20px;
+    border-radius:12px;
+    overflow:auto;
+    margin:15px 0;
+    color:#38bdf8;
+    font-family:monospace;
+    white-space:pre-wrap;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.output{
+    background:#111827;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    color:#22c55e;
+    min-height:50px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:25px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.demo-box{
+    padding:30px;
+    background:#334155;
+    margin-top:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+ul{
+    margin-left:20px;
+}
+
+.highlight{
+    color:#f472b6;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table th,table td{
+    border:1px solid #334155;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#1e40af;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ES6 + DOM Manipulation Guide</h1>
+</header>
+
+<div class="container">
+
+<!-- LET CONST -->
+<section class="section">
+
+<h2 class="section-title">1. let & const</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Concept</h3>
+
+<p>
+ES6 introduced <span class="highlight">let</span> and
+<span class="highlight">const</span> to solve issues caused by var.
+</p>
+
+<ul>
+<li>let → value can change</li>
+<li>const → cannot reassign</li>
+<li>Both are block scoped</li>
+</ul>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>var</th>
+<th>let</th>
+<th>const</th>
+</tr>
+
+<tr>
+<td>Scope</td>
+<td>Function</td>
+<td>Block</td>
+<td>Block</td>
+</tr>
+
+<tr>
+<td>Reassign</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</table>
+
+</div>
+
+<div class="card">
+
+<h3>Interactive Example</h3>
+
+<div class="code">
+let age = 20;
+age = 25;
+
+console.log(age);
+</div>
+
+<button onclick="runLet()">Run Example</button>
+
+<div class="output" id="letOutput"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ARROW -->
+<section class="section">
+
+<h2 class="section-title">2. Arrow Functions</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Concept</h3>
+
+<p>
+Arrow functions provide shorter syntax for functions.
+</p>
+
+<div class="code">
+const add = (a,b) => a + b;
+</div>
+
+<p>
+Arrow functions do NOT create their own <b>this</b>.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Interactive Demo</h3>
+
+<input type="number" id="num1" placeholder="Enter First Number">
+<input type="number" id="num2" placeholder="Enter Second Number">
+
+<button onclick="addNumbers()">Add Numbers</button>
+
+<div class="output" id="arrowOutput"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SPREAD -->
+<section class="section">
+
+<h2 class="section-title">3. Spread Operator</h2>
+
+<div class="card">
+
+<h3>Concept</h3>
+
+<p>
+Spread operator expands array or object elements.
+</p>
+
+<div class="code">
+const nums = [1,2,3];
+
+const copy = [...nums];
+</div>
+
+<button onclick="spreadDemo()">Run Spread Example</button>
+
+<div class="output" id="spreadOutput"></div>
+
+</div>
+
+</section>
+
+<!-- REST -->
+<section class="section">
+
+<h2 class="section-title">4. Rest Operator</h2>
+
+<div class="card">
+
+<h3>Concept</h3>
+
+<p>
+Rest operator collects multiple values into an array.
+</p>
+
+<div class="code">
+function total(...nums){
+ return nums.reduce((a,b)=>a+b);
+}
+</div>
+
+<button onclick="restDemo()">Calculate Sum</button>
+
+<div class="output" id="restOutput"></div>
+
+</div>
+
+</section>
+
+<!-- DESTRUCTURING -->
+<section class="section">
+
+<h2 class="section-title">5. Destructuring</h2>
+
+<div class="card">
+
+<h3>Concept</h3>
+
+<div class="code">
+const user = {
+ name:"John",
+ age:25
+};
+
+const {name,age} = user;
+</div>
+
+<button onclick="destructureDemo()">Run Example</button>
+
+<div class="output" id="destructureOutput"></div>
+
+</div>
+
+</section>
+
+<!-- TEMPLATE -->
+<section class="section">
+
+<h2 class="section-title">6. Template Literals</h2>
+
+<div class="card">
+
+<h3>Interactive Greeting</h3>
+
+<input type="text" id="username" placeholder="Enter Name">
+
+<button onclick="templateDemo()">Generate Greeting</button>
+
+<div class="output" id="templateOutput"></div>
+
+</div>
+
+</section>
+
+<!-- TYPE COERCION -->
+<section class="section">
+
+<h2 class="section-title">7. Type Coercion</h2>
+
+<div class="card">
+
+<h3>Concept</h3>
+
+<div class="code">
+"5" + 1 = "51"
+
+"5" - 1 = 4
+</div>
+
+<button onclick="coercionDemo()">Run Example</button>
+
+<div class="output" id="coercionOutput"></div>
+
+</div>
+
+</section>
+
+<!-- HOISTING -->
+<section class="section">
+
+<h2 class="section-title">8. Hoisting</h2>
+
+<div class="card">
+
+<div class="code">
+console.log(a);
+
+var a = 10;
+</div>
+
+<button onclick="hoistDemo()">Run Hoisting Demo</button>
+
+<div class="output" id="hoistOutput"></div>
+
+</div>
+
+</section>
+
+<!-- DOM -->
+<section class="section">
+
+<h2 class="section-title">9. DOM Manipulation</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Changing Styles</h3>
+
+<div class="demo-box" id="styleBox">
+DOM Box
+</div>
+
+<button onclick="changeStyle()">Change Style</button>
+
+</div>
+
+<div class="card">
+
+<h3>Text Manipulation</h3>
+
+<h1 id="domTitle">Hello Students</h1>
+
+<button onclick="changeText()">Change Text</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EVENTS -->
+<section class="section">
+
+<h2 class="section-title">10. Event Listeners</h2>
+
+<div class="card">
+
+<button id="clickBtn">Click Me</button>
+
+<div class="output" id="eventOutput"></div>
+
+</div>
+
+</section>
+
+<!-- KEYBOARD -->
+<section class="section">
+
+<h2 class="section-title">11. Keyboard Events</h2>
+
+<div class="card">
+
+<input type="text" id="keyboardInput" placeholder="Type Something">
+
+<div class="output" id="keyboardOutput"></div>
+
+</div>
+
+</section>
+
+<!-- BUBBLING -->
+<section class="section">
+
+<h2 class="section-title">12. Event Bubbling</h2>
+
+<div class="card">
+
+<div id="parentBox" style="padding:40px;background:#1d4ed8;border-radius:20px;">
+    Parent Div
+
+    <button id="childBtn" style="margin-top:20px;">
+        Child Button
+    </button>
+</div>
+
+<div class="output" id="bubbleOutput"></div>
+
+</div>
+
+</section>
+
+<!-- DELEGATION -->
+<section class="section">
+
+<h2 class="section-title">13. Event Delegation</h2>
+
+<div class="card">
+
+<ul id="todoList">
+<li>JavaScript</li>
+<li>DOM</li>
+<li>Events</li>
+</ul>
+
+<button onclick="addTodo()">Add Item</button>
+
+<div class="output" id="delegateOutput"></div>
+
+</div>
+
+</section>
+
+</div>
+
+<div class="footer">
+Made for JavaScript Students 🚀
+</div>
+
+<script>
+
+function runLet(){
+    let age = 20;
+    age = 25;
+
+    document.getElementById("letOutput")
+    .innerHTML = "Updated Age: " + age;
+}
+
+function addNumbers(){
+
+    const add = (a,b) => a+b;
+
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    document.getElementById("arrowOutput")
+    .innerHTML = "Result = " + add(a,b);
+}
+
+function spreadDemo(){
+
+    const nums = [1,2,3];
+    const newNums = [...nums,4,5];
+
+    document.getElementById("spreadOutput")
+    .innerHTML = JSON.stringify(newNums);
+}
+
+function restDemo(){
+
+    function total(...nums){
+        return nums.reduce((a,b)=>a+b);
+    }
+
+    document.getElementById("restOutput")
+    .innerHTML = total(10,20,30,40);
+}
+
+function destructureDemo(){
+
+    const user = {
+        name:"John",
+        age:25
+    };
+
+    const {name,age} = user;
+
+    document.getElementById("destructureOutput")
+    .innerHTML = `Name: ${name} | Age: ${age}`;
+}
+
+function templateDemo(){
+
+    const name = document.getElementById("username").value;
+
+    document.getElementById("templateOutput")
+    .innerHTML = `Hello ${name}, Welcome to ES6 Learning!`;
+}
+
+function coercionDemo(){
+
+    let result1 = "5" + 1;
+    let result2 = "5" - 1;
+
+    document.getElementById("coercionOutput")
+    .innerHTML = `"5"+1 = ${result1}<br>"5"-1 = ${result2}`;
+}
+
+function hoistDemo(){
+
+    let text = "";
+
+    text += a + "<br>";
+
+    var a = 10;
+
+    text += a;
+
+    document.getElementById("hoistOutput")
+    .innerHTML = text;
+}
+
+function changeStyle(){
+
+    const box = document.getElementById("styleBox");
+
+    box.style.background = "#22c55e";
+    box.style.color = "black";
+    box.style.transform = "scale(1.1)";
+}
+
+function changeText(){
+
+    document.getElementById("domTitle")
+    .innerText = "DOM Updated Successfully!";
+}
+
+document.getElementById("clickBtn")
+.addEventListener("click",function(){
+
+    document.getElementById("eventOutput")
+    .innerHTML = "Button Clicked!";
+});
+
+document.getElementById("keyboardInput")
+.addEventListener("keydown",(e)=>{
+
+    document.getElementById("keyboardOutput")
+    .innerHTML = `Key Pressed: ${e.key}`;
+});
+
+document.getElementById("parentBox")
+.addEventListener("click",()=>{
+
+    document.getElementById("bubbleOutput")
+    .innerHTML += "Parent Clicked<br>";
+});
+
+document.getElementById("childBtn")
+.addEventListener("click",(e)=>{
+
+    document.getElementById("bubbleOutput")
+    .innerHTML += "Child Button Clicked<br>";
+});
+
+document.getElementById("todoList")
+.addEventListener("click",(e)=>{
+
+    if(e.target.tagName === "LI"){
+
+        document.getElementById("delegateOutput")
+        .innerHTML = "Clicked: " + e.target.innerText;
+    }
+});
+
+function addTodo(){
+
+    const li = document.createElement("li");
+
+    li.innerText = "New Dynamic Item";
+
+    document.getElementById("todoList")
+    .appendChild(li);
+}
+
+</script>
+
+</body>
+</html>

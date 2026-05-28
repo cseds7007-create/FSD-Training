@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Refactor Old JS to ES6</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#141e30,#243b55);
+    min-height:100vh;
+    padding:40px;
+    color:white;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.info{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+.editor{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+textarea{
+    width:100%;
+    height:400px;
+    background:#0f172a;
+    color:#38bdf8;
+    border:none;
+    border-radius:15px;
+    padding:20px;
+    font-size:16px;
+    font-family:monospace;
+}
+
+button{
+    margin-top:25px;
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:#111827;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:30px;
+    background:#0f172a;
+    padding:20px;
+    border-radius:15px;
+    min-height:120px;
+    font-size:18px;
+}
+
+@media(max-width:900px){
+
+.editor{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Refactor Old JavaScript to ES6</h1>
+
+<div class="info">
+
+<h2>Concept</h2>
+
+<p>
+ES6 introduced modern JavaScript features like:
+</p>
+
+<ul>
+<li>let and const</li>
+<li>Arrow Functions</li>
+<li>Template Literals</li>
+<li>Destructuring</li>
+<li>Spread Operator</li>
+</ul>
+
+</div>
+
+<div class="editor">
+
+<div>
+
+<h2>Old JavaScript</h2>
+
+<textarea id="oldCode">
+var name = "John";
+
+function greet(){
+
+    return "Hello " + name;
+
+}
+
+console.log(greet());
+</textarea>
+
+</div>
+
+<div>
+
+<h2>ES6 Version</h2>
+
+<textarea id="newCode">
+const name = "John";
+
+const greet = () => {
+
+    return `Hello ${name}`;
+
+}
+
+console.log(greet());
+</textarea>
+
+</div>
+
+</div>
+
+<button onclick="runCode()">
+Run ES6 Code
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function runCode(){
+
+try{
+
+let output = "";
+
+const log = console.log;
+
+console.log = function(message){
+
+output += message + "<br>";
+
+};
+
+eval(document.getElementById("newCode").value);
+
+document.getElementById("result").innerHTML = output;
+
+console.log = log;
+
+}
+catch(error){
+
+document.getElementById("result").innerHTML =
+error;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

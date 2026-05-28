@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Fibonacci Series</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f7fb;
+    padding:40px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+}
+
+.result{
+    margin-top:20px;
+    font-size:22px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Fibonacci Series</h1>
+
+<input type="number" id="num" placeholder="Enter number">
+
+<button onclick="generateFib()">
+Generate
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function generateFib(){
+
+let n = document.getElementById("num").value;
+
+let a=0,b=1,temp;
+let output="";
+
+for(let i=0;i<n;i++){
+
+output += a + " ";
+
+temp = a+b;
+a=b;
+b=temp;
+
+}
+
+document.getElementById("result").innerHTML =
+output;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>jQuery Practicals</title>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:40px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.title h1{
+    font-size:50px;
+    color:#111827;
+}
+
+.title p{
+    margin-top:15px;
+    color:#555;
+    font-size:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    max-width:1400px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+.card p{
+    line-height:1.8;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.demo-box{
+    padding:20px;
+    border-radius:15px;
+    background:#f8fafc;
+    margin-top:15px;
+    text-align:center;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    margin-top:15px;
+    font-size:16px;
+}
+
+.sample{
+    margin-top:15px;
+    font-size:20px;
+}
+
+.square{
+    width:100px;
+    height:100px;
+    background:#38bdf8;
+    margin:20px auto;
+    border-radius:15px;
+}
+
+@media(max-width:900px){
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="title">
+
+<h1>jQuery Practicals</h1>
+
+<p>
+Learn jQuery concepts with interactive examples.
+</p>
+
+</div>
+
+<div class="grid">
+
+<!-- Introduction -->
+<div class="card">
+
+<h2>Introduction to jQuery</h2>
+
+<p>
+jQuery is a JavaScript library that simplifies DOM manipulation.
+</p>
+
+<div class="demo-box">
+
+<button id="introBtn">
+Click Me
+</button>
+
+<p class="sample" id="introText"></p>
+
+</div>
+
+</div>
+
+<!-- Selecting Elements -->
+<div class="card">
+
+<h2>Selecting Elements</h2>
+
+<p>
+Use jQuery selectors to target HTML elements.
+</p>
+
+<div class="demo-box">
+
+<h3 class="heading">
+Hello Students
+</h3>
+
+<button id="selectBtn">
+Change Heading Color
+</button>
+
+</div>
+
+</div>
+
+<!-- Manipulating Styles -->
+<div class="card">
+
+<h2>Manipulating Styles</h2>
+
+<p>
+Change CSS styles dynamically using jQuery.
+</p>
+
+<div class="demo-box">
+
+<div class="square" id="styleBox"></div>
+
+<button id="styleBtn">
+Change Style
+</button>
+
+</div>
+
+</div>
+
+<!-- Manipulating Text -->
+<div class="card">
+
+<h2>Manipulating Text</h2>
+
+<p>
+Update HTML content and text dynamically.
+</p>
+
+<div class="demo-box">
+
+<h3 id="textContent">
+Original Text
+</h3>
+
+<button id="textBtn">
+Update Text
+</button>
+
+</div>
+
+</div>
+
+<!-- Adding Elements -->
+<div class="card">
+
+<h2>Adding & Removing Elements</h2>
+
+<p>
+Add or remove HTML elements dynamically.
+</p>
+
+<div class="demo-box">
+
+<ul id="list">
+<li>HTML</li>
+<li>CSS</li>
+</ul>
+
+<button id="addBtn">
+Add Item
+</button>
+
+<button id="removeBtn">
+Remove Item
+</button>
+
+</div>
+
+</div>
+
+<!-- Animations -->
+<div class="card">
+
+<h2>Animations</h2>
+
+<p>
+Create smooth animations using jQuery effects.
+</p>
+
+<div class="demo-box">
+
+<div class="square" id="animateBox"></div>
+
+<button id="animateBtn">
+Animate Box
+</button>
+
+</div>
+
+</div>
+
+<!-- Event Handling -->
+<div class="card">
+
+<h2>Event Handling</h2>
+
+<p>
+Handle click, hover and keyboard events easily.
+</p>
+
+<div class="demo-box">
+
+<button id="eventBtn">
+Hover Me
+</button>
+
+<p class="sample" id="eventText"></p>
+
+</div>
+
+</div>
+
+<!-- Callbacks -->
+<div class="card">
+
+<h2>Callbacks</h2>
+
+<p>
+Callbacks run after animations or effects complete.
+</p>
+
+<div class="demo-box">
+
+<div class="square" id="callbackBox"></div>
+
+<button id="callbackBtn">
+Run Callback
+</button>
+
+<p class="sample" id="callbackText"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+$("#introBtn").click(function(){
+
+$("#introText").text("Welcome to jQuery!");
+
+});
+
+$("#selectBtn").click(function(){
+
+$(".heading").css("color","red");
+
+});
+
+$("#styleBtn").click(function(){
+
+$("#styleBox").css({
+    "background":"purple",
+    "border-radius":"50%"
+});
+
+});
+
+$("#textBtn").click(function(){
+
+$("#textContent").text("Text Updated Successfully!");
+
+});
+
+$("#addBtn").click(function(){
+
+$("#list").append("<li>JavaScript</li>");
+
+});
+
+$("#removeBtn").click(function(){
+
+$("#list li:last").remove();
+
+});
+
+$("#animateBtn").click(function(){
+
+$("#animateBox").animate({
+    width:"200px",
+    height:"200px"
+});
+
+});
+
+$("#eventBtn").hover(function(){
+
+$("#eventText").text("Mouse Hover Detected!");
+
+});
+
+$("#callbackBtn").click(function(){
+
+$("#callbackBox").slideUp(1000,function(){
+
+$("#callbackText").text("Animation Completed!");
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

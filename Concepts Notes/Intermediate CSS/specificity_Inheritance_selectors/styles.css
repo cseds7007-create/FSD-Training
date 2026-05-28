@@ -1,0 +1,26 @@
+
+/* position of the selector in the stylesheet */
+
+ol > li:nth-child(1) {
+    color:green;
+    color:orange;
+}
+
+li:nth-child(2) {
+    color:red;
+    color:blue;
+    
+}
+
+/* Specificity of the selector */
+
+li {color:hotpink;}
+.first-class {color: red;}
+li[draggable="true"] {color: violet;}
+#first-id {color:green;}
+
+/* Important rule */
+
+
+.first-class {color: red !important;}
+

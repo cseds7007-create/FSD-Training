@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate CSS Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>The Cascade - Specificity and Inheritance</h1>
+
+    <!-- Example for the CSS Position specificity-->
+
+    <ol>
+        <li>
+            <h2>Specificity</h2>
+            <p>Specificity is a set of rules that browsers use to determine which CSS rule applies when multiple rules could apply to the same element. It is calculated based on the types of selectors used in the CSS rule.</p>
+            <p>The specificity hierarchy is as follows:</p>
+            <ul>
+                <li>Inline styles (e.g., style="color: red;") have the highest specificity.</li>
+                <li>ID selectors (e.g., #header) have a higher specificity than class selectors.</li>
+                <li>Class selectors (e.g., .nav) have a higher specificity than element selectors.</li>
+                <li>Element selectors (e.g., div, p) have the lowest specificity.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Inheritance</h2>
+            <p>Inheritance is a mechanism by which some CSS properties are passed down from parent elements to their children. Not all properties are inherited; for example, text-related properties like color and font-family are typically inherited, while box model properties like margin and padding are not.</p>
+            <p>Understanding which properties are inherited can help you write more efficient CSS and avoid unnecessary declarations.</p>
+        </li>
+
+        <!-- example for the Specificity -->
+        
+        <li id="first-id" class="first-class" draggable="true">Example for the Specificity</li>
+
+    </ol>
+</body>
+</html>
+
+
+

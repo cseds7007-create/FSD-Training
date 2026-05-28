@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete jQuery & Advanced DOM Notes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0f172a;
+      color:#e2e8f0;
+      line-height:1.7;
+    }
+
+    header{
+      background:linear-gradient(135deg,#1e293b,#0f172a);
+      padding:60px 20px;
+      text-align:center;
+      border-bottom:2px solid #334155;
+    }
+
+    header h1{
+      font-size:3.2rem;
+      color:#38bdf8;
+      margin-bottom:10px;
+    }
+
+    header p{
+      max-width:1000px;
+      margin:auto;
+      color:#cbd5e1;
+      font-size:1.1rem;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:999;
+      background:#111827;
+      padding:15px;
+      border-bottom:1px solid #334155;
+    }
+
+    nav ul{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      padding:10px 15px;
+      border-radius:10px;
+      background:#1e293b;
+      transition:0.3s;
+      font-size:0.92rem;
+    }
+
+    nav a:hover{
+      background:#38bdf8;
+      color:#0f172a;
+      transform:translateY(-2px);
+    }
+
+    .container{
+      width:95%;
+      max-width:1400px;
+      margin:auto;
+      padding:40px 0;
+    }
+
+    section{
+      background:#111827;
+      margin-bottom:50px;
+      border-radius:18px;
+      padding:35px;
+      border:1px solid #334155;
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h2{
+      color:#38bdf8;
+      margin-bottom:20px;
+      font-size:2.3rem;
+    }
+
+    h3{
+      color:#facc15;
+      margin:25px 0 15px;
+    }
+
+    h4{
+      color:#4ade80;
+      margin-top:20px;
+      margin-bottom:10px;
+    }
+
+    p{
+      margin-bottom:15px;
+      color:#cbd5e1;
+    }
+
+    ul{
+      margin-left:20px;
+      margin-bottom:20px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    table th,table td{
+      border:1px solid #334155;
+      padding:15px;
+      text-align:left;
+    }
+
+    table th{
+      background:#1e293b;
+      color:#38bdf8;
+    }
+
+    .code-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      margin-top:20px;
+    }
+
+    .code-box{
+      background:#020617;
+      border-radius:15px;
+      overflow:hidden;
+      border:1px solid #334155;
+    }
+
+    .code-title{
+      background:#1e293b;
+      padding:12px;
+      font-weight:600;
+      color:#38bdf8;
+    }
+
+    pre{
+      overflow:auto;
+      padding:20px;
+      color:#22c55e;
+      font-size:0.95rem;
+    }
+
+    .example-box{
+      background:#1e293b;
+      border:1px solid #334155;
+      padding:25px;
+      border-radius:15px;
+      margin-top:20px;
+    }
+
+    .demo{
+      background:white;
+      color:black;
+      padding:20px;
+      border-radius:10px;
+      margin-top:15px;
+    }
+
+    button{
+      padding:12px 20px;
+      border:none;
+      border-radius:10px;
+      background:#38bdf8;
+      color:#0f172a;
+      font-weight:600;
+      cursor:pointer;
+      margin:10px 5px;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#0ea5e9;
+      transform:scale(1.05);
+    }
+
+    .dom-tree{
+      background:#020617;
+      padding:20px;
+      border-radius:15px;
+      margin-top:20px;
+      color:#4ade80;
+      font-family:monospace;
+    }
+
+    .terminal{
+      background:black;
+      color:#00ff66;
+      padding:20px;
+      border-radius:12px;
+      font-family:monospace;
+      margin-top:15px;
+    }
+
+    .highlight{
+      background:yellow;
+      color:black;
+      padding:5px;
+    }
+
+    .animated-box{
+      width:100px;
+      height:100px;
+      background:#38bdf8;
+      border-radius:12px;
+      margin-top:20px;
+      position:relative;
+    }
+
+    footer{
+      background:#020617;
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+    }
+
+    @media(max-width:900px){
+
+      .code-grid{
+        grid-template-columns:1fr;
+      }
+
+      header h1{
+        font-size:2.2rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>jQuery & Advanced DOM</h1>
+
+
+</header>
+
+<nav>
+
+  <ul>
+
+    <li><a href="#dom">DOM</a></li>
+    <li><a href="#jquery">Intro</a></li>
+    <li><a href="#select">Selecting</a></li>
+    <li><a href="#styles">Styles</a></li>
+    <li><a href="#text">Text</a></li>
+    <li><a href="#elements">Elements</a></li>
+    <li><a href="#animations">Animations</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#callbacks">Callbacks</a></li>
+    <li><a href="#unix">UNIX</a></li>
+    <li><a href="#interview">Interview Qs</a></li>
+
+  </ul>
+
+</nav>
+
+<div class="container">
+
+<!-- DOM -->
+
+<section id="dom">
+
+  <h2>1. What is DOM?</h2>
+
+  <p>
+    DOM stands for Document Object Model.
+    Browser converts HTML page into tree structure.
+    JavaScript can access and manipulate HTML elements using DOM.
+  </p>
+
+  <h3>DOM Tree Structure</h3>
+
+  <div class="dom-tree">
+
+HTML <br>
+ └── BODY <br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── H1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── P <br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── BUTTON
+
+  </div>
+
+  <h3>Why DOM is Important?</h3>
+
+  <ul>
+
+    <li>Change webpage dynamically</li>
+    <li>Handle user interactions</li>
+    <li>Create animations</li>
+    <li>Update content without refresh</li>
+    <li>Used heavily in modern frameworks</li>
+
+  </ul>
+
+</section>
+
+<!-- JQUERY -->
+
+<section id="jquery">
+
+  <h2>2. Introduction to jQuery</h2>
+
+  <p>
+    jQuery is a lightweight JavaScript library that simplifies DOM operations.
+  </p>
+
+  <table>
+
+    <tr>
+      <th>Without jQuery</th>
+      <th>With jQuery</th>
+    </tr>
+
+    <tr>
+      <td>Long JavaScript code</td>
+      <td>Short and easy code</td>
+    </tr>
+
+    <tr>
+      <td>Browser compatibility issues</td>
+      <td>Handled automatically</td>
+    </tr>
+
+  </table>
+
+  <h3>Add jQuery</h3>
+
+  <pre>
+&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;
+  </pre>
+
+  <h3>Basic Syntax</h3>
+
+  <pre>
+$(selector).action()
+  </pre>
+
+</section>
+
+<!-- SELECT -->
+
+<section id="select">
+
+  <h2>3. Selecting Elements</h2>
+
+  <p>
+    Selectors are used to access HTML elements.
+  </p>
+
+  <table>
+
+    <tr>
+      <th>Selector</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>$("p")</td>
+      <td>Select all paragraphs</td>
+    </tr>
+
+    <tr>
+      <td>$("#id")</td>
+      <td>Select by ID</td>
+    </tr>
+
+    <tr>
+      <td>$(".class")</td>
+      <td>Select by Class</td>
+    </tr>
+
+  </table>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#demo").css(
+ "background","yellow"
+);
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+document.getElementById("demo")
+.style.background = "yellow";
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="jqSelectBtn">
+      jQuery Highlight
+    </button>
+
+    <button onclick="jsHighlight()">
+      JavaScript Highlight
+    </button>
+
+    <div class="demo">
+
+      <p id="demo">
+        This paragraph will be highlighted.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STYLES -->
+
+<section id="styles">
+
+  <h2>4. Manipulating Styles</h2>
+
+  <p>
+    Styles can be changed dynamically using jQuery and JavaScript.
+  </p>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#box").css({
+ background:"black",
+ color:"white",
+ padding:"20px"
+});
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+let box =
+document.getElementById("box");
+
+box.style.background = "black";
+box.style.color = "white";
+box.style.padding = "20px";
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="jqStyleBtn">
+      jQuery Style
+    </button>
+
+    <button onclick="jsStyle()">
+      JavaScript Style
+    </button>
+
+    <div class="demo" id="styleBox">
+      Style changing demo
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TEXT -->
+
+<section id="text">
+
+  <h2>5. Manipulating Text</h2>
+
+  <table>
+
+    <tr>
+      <th>Method</th>
+      <th>Purpose</th>
+    </tr>
+
+    <tr>
+      <td>text()</td>
+      <td>Change plain text</td>
+    </tr>
+
+    <tr>
+      <td>html()</td>
+      <td>Change HTML</td>
+    </tr>
+
+    <tr>
+      <td>val()</td>
+      <td>Get input value</td>
+    </tr>
+
+  </table>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+let name = $("#name").val();
+
+$("#output").text(name);
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+let name =
+document.getElementById("name")
+.value;
+
+document.getElementById("output")
+.innerText = name;
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <input type="text" id="name" placeholder="Enter name">
+
+    <button id="jqTextBtn">
+      jQuery Text
+    </button>
+
+    <button onclick="jsText()">
+      JavaScript Text
+    </button>
+
+    <div class="demo" id="output"></div>
+
+  </div>
+
+</section>
+
+<!-- ELEMENTS -->
+
+<section id="elements">
+
+  <h2>6. Adding & Removing Elements</h2>
+
+  <table>
+
+    <tr>
+      <th>Method</th>
+      <th>Purpose</th>
+    </tr>
+
+    <tr>
+      <td>append()</td>
+      <td>Add element at end</td>
+    </tr>
+
+    <tr>
+      <td>prepend()</td>
+      <td>Add element at start</td>
+    </tr>
+
+    <tr>
+      <td>remove()</td>
+      <td>Remove element</td>
+    </tr>
+
+  </table>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#list").append(
+ "&lt;li&gt;New Item&lt;/li&gt;"
+);
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+let li =
+document.createElement("li");
+
+li.innerText = "New Item";
+
+document.getElementById("list")
+.appendChild(li);
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="jqAddBtn">
+      jQuery Add
+    </button>
+
+    <button onclick="jsAdd()">
+      JavaScript Add
+    </button>
+
+    <button onclick="removeItem()">
+      Remove
+    </button>
+
+    <ul id="list">
+      <li>Student 1</li>
+    </ul>
+
+  </div>
+
+</section>
+
+<!-- ANIMATIONS -->
+
+<section id="animations">
+
+  <h2>7. Animations</h2>
+
+  <table>
+
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>hide()</td>
+      <td>Hide element</td>
+    </tr>
+
+    <tr>
+      <td>show()</td>
+      <td>Show element</td>
+    </tr>
+
+    <tr>
+      <td>fadeIn()</td>
+      <td>Fade animation</td>
+    </tr>
+
+    <tr>
+      <td>slideUp()</td>
+      <td>Slide effect</td>
+    </tr>
+
+  </table>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#animateBox").fadeOut(1000);
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+document.getElementById("animateBox")
+.style.opacity = "0";
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="jqAnimateBtn">
+      jQuery Animation
+    </button>
+
+    <button onclick="jsAnimate()">
+      JavaScript Animation
+    </button>
+
+    <div class="animated-box"
+      id="animateBox">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- EVENTS -->
+
+<section id="events">
+
+  <h2>8. Event Handling</h2>
+
+  <p>
+    Events occur when user interacts with webpage.
+  </p>
+
+  <table>
+
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>click()</td>
+      <td>Mouse click</td>
+    </tr>
+
+    <tr>
+      <td>mouseenter()</td>
+      <td>Mouse enters</td>
+    </tr>
+
+    <tr>
+      <td>keydown()</td>
+      <td>Keyboard key press</td>
+    </tr>
+
+  </table>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#btn").click(function(){
+ alert("Clicked");
+});
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+document.getElementById("btn")
+.addEventListener("click",
+function(){
+ alert("Clicked");
+});
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="btn">
+      Event Button
+    </button>
+
+    <div class="demo" id="eventOutput">
+      Waiting for event...
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CALLBACKS -->
+
+<section id="callbacks">
+
+  <h2>9. Callbacks</h2>
+
+  <p>
+    Callback function executes after another function finishes.
+  </p>
+
+  <div class="code-grid">
+
+    <div class="code-box">
+
+      <div class="code-title">jQuery</div>
+
+<pre>
+$("#callbackBox").hide(
+1000,
+function(){
+ alert("Hidden");
+});
+</pre>
+
+    </div>
+
+    <div class="code-box">
+
+      <div class="code-title">Normal JavaScript</div>
+
+<pre>
+setTimeout(function(){
+
+ alert("Finished");
+
+},1000);
+</pre>
+
+    </div>
+
+  </div>
+
+  <div class="example-box">
+
+    <button id="jqCallbackBtn">
+      jQuery Callback
+    </button>
+
+    <button onclick="jsCallback()">
+      JavaScript Callback
+    </button>
+
+    <div class="demo" id="callbackBox">
+      Callback demo box
+    </div>
+
+  </div>
+
+</section>
+
+<!-- UNIX -->
+
+<section id="unix">
+
+  <h2>10. UNIX Commands</h2>
+
+  <table>
+
+    <tr>
+      <th>Command</th>
+      <th>Purpose</th>
+    </tr>
+
+    <tr>
+      <td>pwd</td>
+      <td>Current directory</td>
+    </tr>
+
+    <tr>
+      <td>ls</td>
+      <td>List files</td>
+    </tr>
+
+    <tr>
+      <td>cd</td>
+      <td>Change directory</td>
+    </tr>
+
+    <tr>
+      <td>mkdir</td>
+      <td>Create folder</td>
+    </tr>
+
+    <tr>
+      <td>touch</td>
+      <td>Create file</td>
+    </tr>
+
+    <tr>
+      <td>rm</td>
+      <td>Delete file</td>
+    </tr>
+
+  </table>
+
+  <div class="terminal">
+
+$ pwd <br>
+/home/student <br><br>
+
+$ mkdir jquery <br>
+$ cd jquery <br>
+$ touch index.html <br>
+$ ls <br>
+index.html
+
+  </div>
+
+  <h3>File Permissions</h3>
+
+  <div class="terminal">
+
+chmod 777 file.txt
+
+  </div>
+
+</section>
+
+<!-- INTERVIEW -->
+
+<section id="interview">
+
+  <h2>11. Interview Questions</h2>
+
+  <h3>1. What is jQuery?</h3>
+
+  <p>
+    jQuery is a JavaScript library used to simplify DOM manipulation,
+    animations, events, and AJAX operations.
+  </p>
+
+  <h3>2. Difference between JavaScript and jQuery?</h3>
+
+  <table>
+
+    <tr>
+      <th>JavaScript</th>
+      <th>jQuery</th>
+    </tr>
+
+    <tr>
+      <td>Programming language</td>
+      <td>Library of JavaScript</td>
+    </tr>
+
+    <tr>
+      <td>Longer syntax</td>
+      <td>Shorter syntax</td>
+    </tr>
+
+  </table>
+
+  <h3>3. What is DOM?</h3>
+
+  <p>
+    DOM is tree representation of webpage elements.
+  </p>
+
+  <h3>4. What are callbacks?</h3>
+
+  <p>
+    Functions executed after another function completes.
+  </p>
+
+  <h3>5. What is event bubbling?</h3>
+
+  <p>
+    Event propagates from child to parent elements.
+  </p>
+
+</section>
+
+<!-- PRACTICE -->
+
+<section>
+
+  <h2>12. Practice Exercises</h2>
+
+  <ol>
+
+    <li>Create hide/show paragraph button.</li>
+    <li>Create calculator using jQuery.</li>
+    <li>Create image slider.</li>
+    <li>Create to-do list using append().</li>
+    <li>Create form validation using events.</li>
+
+  </ol>
+
+</section>
+
+</div>
+
+<footer>
+
+  <h3>Complete jQuery & DOM Learning Page</h3>
+
+  <p>
+    Designed for classroom explanation, interviews,
+    assignments, and practical understanding.
+  </p>
+
+</footer>
+
+<script>
+
+  // -----------------------------
+  // SELECTING
+  // -----------------------------
+
+  $("#jqSelectBtn").click(function(){
+
+    $("#demo").toggleClass("highlight");
+
+  });
+
+  function jsHighlight(){
+
+    document.getElementById("demo")
+    .classList.toggle("highlight");
+
+  }
+
+  // -----------------------------
+  // STYLES
+  // -----------------------------
+
+  $("#jqStyleBtn").click(function(){
+
+    $("#styleBox").css({
+
+      background:"#38bdf8",
+      color:"#0f172a",
+      fontSize:"22px",
+      fontWeight:"bold"
+
+    });
+
+  });
+
+  function jsStyle(){
+
+    let box =
+    document.getElementById("styleBox");
+
+    box.style.background = "#facc15";
+    box.style.color = "black";
+    box.style.fontSize = "22px";
+    box.style.fontWeight = "bold";
+
+  }
+
+  // -----------------------------
+  // TEXT
+  // -----------------------------
+
+  $("#jqTextBtn").click(function(){
+
+    let name = $("#name").val();
+
+    $("#output").text(
+      "Hello " + name
+    );
+
+  });
+
+  function jsText(){
+
+    let name =
+    document.getElementById("name")
+    .value;
+
+    document.getElementById("output")
+    .innerText = "Hello " + name;
+
+  }
+
+  // -----------------------------
+  // ADD REMOVE
+  // -----------------------------
+
+  let count = 2;
+
+  $("#jqAddBtn").click(function(){
+
+    $("#list").append(
+      "<li>Student " + count++ + "</li>"
+    );
+
+  });
+
+  function jsAdd(){
+
+    let li =
+    document.createElement("li");
+
+    li.innerText =
+    "Student " + count++;
+
+    document.getElementById("list")
+    .appendChild(li);
+
+  }
+
+  function removeItem(){
+
+    let list =
+    document.getElementById("list");
+
+    if(list.lastElementChild){
+
+      list.removeChild(
+        list.lastElementChild
+      );
+
+    }
+
+  }
+
+  // -----------------------------
+  // ANIMATIONS
+  // -----------------------------
+
+  $("#jqAnimateBtn").click(function(){
+
+    $("#animateBox").fadeOut(1000)
+    .fadeIn(1000);
+
+  });
+
+  function jsAnimate(){
+
+    let box =
+    document.getElementById("animateBox");
+
+    box.animate([
+
+      { transform:"translateX(0px)" },
+
+      { transform:"translateX(300px)" }
+
+    ],{
+
+      duration:1000,
+      iterations:1
+
+    });
+
+  }
+
+  // -----------------------------
+  // EVENTS
+  // -----------------------------
+
+  $("#btn").click(function(){
+
+    $("#eventOutput").text(
+      "jQuery Click Event Triggered!"
+    );
+
+  });
+
+  document.getElementById("btn")
+  .addEventListener("dblclick",
+  function(){
+
+    document.getElementById(
+      "eventOutput"
+    ).innerText =
+    "JavaScript Double Click Triggered!";
+
+  });
+
+  // -----------------------------
+  // CALLBACKS
+  // -----------------------------
+
+  $("#jqCallbackBtn").click(function(){
+
+    $("#callbackBox").hide(
+      1000,
+      function(){
+
+        alert(
+          "jQuery Callback Executed!"
+        );
+
+        $("#callbackBox").show();
+
+      }
+    );
+
+  });
+
+  function jsCallback(){
+
+    let box =
+    document.getElementById(
+      "callbackBox"
+    );
+
+    box.style.display = "none";
+
+    setTimeout(function(){
+
+      alert(
+        "JavaScript Callback Executed!"
+      );
+
+      box.style.display = "block";
+
+    },1000);
+
+  }
+
+</script>
+
+</body>
+</html>

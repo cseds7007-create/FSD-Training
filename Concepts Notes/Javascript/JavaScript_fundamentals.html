@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Fundamentals Demo</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      color:#222;
+      padding:20px;
+      line-height:1.6;
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:30px;
+      color:#0b5ed7;
+    }
+
+    .section{
+      background:white;
+      margin-bottom:25px;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .section h2{
+      color:#0b5ed7;
+      margin-bottom:10px;
+    }
+
+    .box{
+      background:#eef3ff;
+      padding:12px;
+      border-left:5px solid #0b5ed7;
+      margin:12px 0;
+      border-radius:5px;
+    }
+
+    button{
+      padding:10px 18px;
+      border:none;
+      background:#0b5ed7;
+      color:white;
+      border-radius:6px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    button:hover{
+      background:#084298;
+    }
+
+    .output{
+      margin-top:10px;
+      background:#222;
+      color:#00ff88;
+      padding:12px;
+      border-radius:6px;
+      min-height:40px;
+      white-space:pre-line;
+    }
+
+    code{
+      background:#eee;
+      padding:2px 6px;
+      border-radius:4px;
+    }
+
+    ul{
+      padding-left:20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>JavaScript Fundamentals Live Demo</h1>
+
+  <!-- INTRODUCTION -->
+  <div class="section">
+    <h2>1. Introduction to JavaScript</h2>
+
+    <p>
+      JavaScript is a programming language used to make web pages interactive.
+    </p>
+
+    <div class="box">
+      Examples:
+      <ul>
+        <li>Button Click Actions</li>
+        <li>Animations</li>
+        <li>Form Validation</li>
+        <li>Dynamic Content Updates</li>
+      </ul>
+    </div>
+
+    <button onclick="showIntro()">Run JavaScript</button>
+
+    <div class="output" id="introOutput"></div>
+  </div>
+
+  <!-- VARIABLES -->
+  <div class="section">
+    <h2>2. Variables</h2>
+
+    <p>
+      Variables are used to store data values.
+    </p>
+
+    <div class="box">
+      Types of variable declaration:
+      <ul>
+        <li><code>var</code> → old way</li>
+        <li><code>let</code> → modern and changeable</li>
+        <li><code>const</code> → constant value</li>
+      </ul>
+    </div>
+
+    <button onclick="showVariables()">Show Variables</button>
+
+    <div class="output" id="variableOutput"></div>
+  </div>
+
+  <!-- DATA TYPES -->
+  <div class="section">
+    <h2>3. Data Types</h2>
+
+    <div class="box">
+      JavaScript Data Types:
+      <ul>
+        <li>String</li>
+        <li>Number</li>
+        <li>Boolean</li>
+        <li>Array</li>
+        <li>Object</li>
+        <li>Undefined</li>
+        <li>Null</li>
+      </ul>
+    </div>
+
+    <button onclick="showDataTypes()">Show Data Types</button>
+
+    <div class="output" id="datatypeOutput"></div>
+  </div>
+
+  <!-- OPERATORS -->
+  <div class="section">
+    <h2>4. Operators</h2>
+
+    <div class="box">
+      Operators perform operations on values.
+    </div>
+
+    <button onclick="showOperators()">Run Operators</button>
+
+    <div class="output" id="operatorOutput"></div>
+  </div>
+
+  <!-- NAMING CONVENTIONS -->
+  <div class="section">
+    <h2>5. Naming Conventions</h2>
+
+    <div class="box">
+      Rules:
+      <ul>
+        <li>Variable names should start with letters, _ or $</li>
+        <li>Cannot start with numbers</li>
+        <li>Use camelCase</li>
+        <li>Names should be meaningful</li>
+      </ul>
+    </div>
+
+    <button onclick="showNaming()">Show Naming Convention</button>
+
+    <div class="output" id="namingOutput"></div>
+  </div>
+
+  <!-- STRING MANIPULATION -->
+  <div class="section">
+    <h2>6. String Manipulation</h2>
+
+    <button onclick="showStrings()">Manipulate Strings</button>
+
+    <div class="output" id="stringOutput"></div>
+  </div>
+
+  <!-- TEMPLATE LITERALS -->
+  <div class="section">
+    <h2>7. Template Literals</h2>
+
+    <div class="box">
+      Template literals use backticks <code>` `</code>
+      and allow embedding variables using <code>${ }</code>
+    </div>
+
+    <button onclick="showTemplateLiterals()">Show Template Literal</button>
+
+    <div class="output" id="templateOutput"></div>
+  </div>
+
+  <!-- ARITHMETIC -->
+  <div class="section">
+    <h2>8. Arithmetic Operations</h2>
+
+    <button onclick="showArithmetic()">Perform Arithmetic</button>
+
+    <div class="output" id="arithmeticOutput"></div>
+  </div>
+
+  <!-- INCREMENT DECREMENT -->
+  <div class="section">
+    <h2>9. Increment & Decrement</h2>
+
+    <div class="box">
+      Increment → <code>++</code><br>
+      Decrement → <code>--</code>
+    </div>
+
+    <button onclick="showIncrement()">Run Increment & Decrement</button>
+
+    <div class="output" id="incrementOutput"></div>
+  </div>
+
+
+  <script>
+
+    // INTRODUCTION
+    function showIntro(){
+      document.getElementById("introOutput").innerHTML =
+      "JavaScript is running successfully!\n" +
+      "This text is dynamically added using JavaScript.";
+    }
+
+    // VARIABLES
+    function showVariables(){
+
+      var oldVariable = "I am var";
+      let age = 22;
+      const country = "India";
+
+      document.getElementById("variableOutput").innerHTML =
+      "var : " + oldVariable + "\n" +
+      "let : " + age + "\n" +
+      "const : " + country;
+    }
+
+    // DATA TYPES
+    function showDataTypes(){
+
+      let name = "Krishna";
+      let marks = 95;
+      let isPassed = true;
+      let colors = ["Red", "Blue"];
+      let student = {id:1, city:"Hyderabad"};
+      let data;
+      let empty = null;
+
+      document.getElementById("datatypeOutput").innerHTML =
+      "String : " + name + "\n" +
+      "Number : " + marks + "\n" +
+      "Boolean : " + isPassed + "\n" +
+      "Array : " + colors + "\n" +
+      "Object : " + JSON.stringify(student) + "\n" +
+      "Undefined : " + data + "\n" +
+      "Null : " + empty;
+    }
+
+    // OPERATORS
+    function showOperators(){
+
+      let a = 10;
+      let b = 5;
+
+      document.getElementById("operatorOutput").innerHTML =
+      "Addition : " + (a+b) + "\n" +
+      "Subtraction : " + (a-b) + "\n" +
+      "Multiplication : " + (a*b) + "\n" +
+      "Division : " + (a/b) + "\n" +
+      "Modulus : " + (a%b) + "\n" +
+      "Comparison (a>b) : " + (a>b);
+    }
+
+    // NAMING CONVENTION
+    function showNaming(){
+
+      let studentName = "Rahul";
+      let totalMarks = 500;
+      let isLoggedIn = true;
+
+      document.getElementById("namingOutput").innerHTML =
+      "studentName → " + studentName + "\n" +
+      "totalMarks → " + totalMarks + "\n" +
+      "isLoggedIn → " + isLoggedIn;
+    }
+
+    // STRING MANIPULATION
+    function showStrings(){
+
+      let text = "JavaScript";
+
+      document.getElementById("stringOutput").innerHTML =
+      "Original : " + text + "\n" +
+      "Length : " + text.length + "\n" +
+      "Uppercase : " + text.toUpperCase() + "\n" +
+      "Lowercase : " + text.toLowerCase() + "\n" +
+      "Substring : " + text.substring(0,4);
+    }
+
+    // TEMPLATE LITERALS
+    function showTemplateLiterals(){
+
+      let name = "Krishna";
+      let age = 22;
+
+      let message = `My name is ${name} and I am ${age} years old.`;
+
+      document.getElementById("templateOutput").innerHTML = message;
+    }
+
+    // ARITHMETIC
+    function showArithmetic(){
+
+      let x = 20;
+      let y = 4;
+
+      document.getElementById("arithmeticOutput").innerHTML =
+      "x + y = " + (x+y) + "\n" +
+      "x - y = " + (x-y) + "\n" +
+      "x * y = " + (x*y) + "\n" +
+      "x / y = " + (x/y);
+    }
+
+    // INCREMENT DECREMENT
+    function showIncrement(){
+
+      let count = 5;
+
+      let preIncrement = ++count;
+      let postDecrement = count--;
+
+      document.getElementById("incrementOutput").innerHTML =
+      "After Pre Increment (++count): " + preIncrement + "\n" +
+      "After Post Decrement (count--): " + postDecrement + "\n" +
+      "Final Value : " + count;
+    }
+
+  </script>
+
+</body>
+</html>

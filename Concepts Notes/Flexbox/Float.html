@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Float Layout Demo</title>
+
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      margin:0;
+      padding:20px;
+    }
+
+    h1{
+      text-align:center;
+      color:#333;
+    }
+
+    p{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .container{
+      background:white;
+      padding:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .header{
+      background:#4CAF50;
+      color:white;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+      padding:20px;
+      margin-bottom:10px;
+    }
+
+    .sidebar{
+      float:left;
+      width:20%;
+      background:#ffcc80;
+      padding:20px;
+      box-sizing:border-box;
+      min-height:300px;
+    }
+
+    .content{
+      float:left;
+      width:58%;
+      background:#e1f5fe;
+      padding:20px;
+      margin:0 1%;
+      box-sizing:border-box;
+      min-height:300px;
+    }
+
+    .rightbar{
+      float:left;
+      width:20%;
+      background:#f8bbd0;
+      padding:20px;
+      box-sizing:border-box;
+      min-height:300px;
+    }
+
+    .clear{
+      clear:both;
+    }
+
+    .footer{
+      background:#333;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Old Layout Using Float</h1>
+
+  <p>
+    Before Flexbox and Grid, developers commonly used
+    the float property to create multi-column layouts.
+  </p>
+
+  <div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+      My Float Website
+    </div>
+
+    <!-- Columns -->
+
+    <div class="sidebar">
+
+      <h2>Menu</h2>
+
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Services</li>
+        <li>Contact</li>
+      </ul>
+
+    </div>
+
+    <div class="content">
+
+      <h2>Main Content</h2>
+
+      <p>
+        Float was originally introduced for wrapping
+        text around images, but developers started using
+        it for complete page layouts.
+      </p>
+
+      <p>
+        Elements floated left or right to create columns,
+        similar to how Flexbox works today.
+      </p>
+
+      <p>
+        Clearing floated elements was an important part
+        of old CSS layouts.
+      </p>
+
+    </div>
+
+    <div class="rightbar">
+
+      <h2>News</h2>
+
+      <p>Latest Updates</p>
+      <p>New Products</p>
+      <p>Upcoming Events</p>
+
+    </div>
+
+    <!-- Clear float -->
+
+    <div class="clear"></div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+      © 2008 My Float Website
+    </div>
+
+  </div>
+
+</body>
+</html>

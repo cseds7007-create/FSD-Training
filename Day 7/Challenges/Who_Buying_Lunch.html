@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Who's Buying Lunch?</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:700px;
+    margin:auto;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+}
+
+.result{
+    margin-top:20px;
+    font-size:24px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Who's Buying Lunch?</h1>
+
+<p>
+Enter names separated with commas.
+</p>
+
+<input type="text" id="names">
+
+<button onclick="pickPerson()">
+Pick Random Person
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function pickPerson(){
+
+let names =
+document.getElementById("names").value.split(",");
+
+let random =
+Math.floor(Math.random()*names.length);
+
+document.getElementById("result").innerHTML =
+names[random] + " is buying lunch!";
+
+}
+
+</script>
+
+</body>
+</html>

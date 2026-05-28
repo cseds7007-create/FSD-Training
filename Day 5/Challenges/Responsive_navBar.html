@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Responsive Navbar</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#eef2f7;
+        }
+
+        nav{
+            background:#111827;
+            padding:20px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+
+        .logo{
+            color:white;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .menu{
+            display:flex;
+            list-style:none;
+            gap:25px;
+            flex-wrap:wrap;
+        }
+
+        .menu li a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .menu li a:hover{
+            color:#38bdf8;
+        }
+
+        .hero{
+            text-align:center;
+            padding:120px 20px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            color:#111827;
+        }
+
+        .hero p{
+            margin-top:20px;
+            font-size:22px;
+            color:#555;
+        }
+
+        @media(max-width:768px){
+
+            nav{
+                flex-direction:column;
+                gap:20px;
+            }
+
+            .menu{
+                justify-content:center;
+            }
+
+            .hero h1{
+                font-size:40px;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav>
+
+        <div class="logo">
+            MyWebsite
+        </div>
+
+        <ul class="menu">
+
+            <li><a href="#">Home</a></li>
+
+            <li><a href="#">About</a></li>
+
+            <li><a href="#">Services</a></li>
+
+            <li><a href="#">Portfolio</a></li>
+
+            <li><a href="#">Contact</a></li>
+
+        </ul>
+
+    </nav>
+
+    <section class="hero">
+
+        <h1>Responsive Navbar</h1>
+
+        <p>
+            Navbar automatically adjusts for mobile devices.
+        </p>
+
+    </section>
+
+</body>
+</html>

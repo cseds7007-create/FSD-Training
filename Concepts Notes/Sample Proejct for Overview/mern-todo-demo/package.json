@@ -1,0 +1,16 @@
+{
+  "name": "mern-todo-app",
+  "version": "1.0.0",
+  "description": "MERN Todo Application",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix client"
+  }
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Web Design Demo</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+      min-height:100vh;
+      color:white;
+    }
+
+  
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top:0;
+    }
+
+    nav h1{
+      font-size:2rem;
+      letter-spacing:2px;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:yellow;
+    }
+
+    /* HERO SECTION */
+    .hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:80px 60px;
+      gap:40px;
+    }
+
+    .hero-text{
+      flex:1;
+    }
+
+    .hero-text h2{
+      font-size:4rem;
+      margin-bottom:20px;
+    }
+
+    .hero-text p{
+      font-size:1.2rem;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .hero-text button{
+      padding:15px 30px;
+      border:none;
+      border-radius:30px;
+      background:white;
+      color:#6a11cb;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .hero-text button:hover{
+      transform:scale(1.1);
+      background:yellow;
+    }
+
+    .hero-image{
+      flex:1;
+      display:flex;
+      justify-content:center;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:450px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+ 
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:25px;
+      padding:40px 60px 80px;
+    }
+
+    .card{
+      padding:30px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      transition:0.4s;
+      text-align:center;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.3);
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      font-size:1.8rem;
+    }
+
+    .card p{
+      line-height:1.6;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      background:rgba(0,0,0,0.2);
+      font-size:1rem;
+    }
+
+    /*MEDIAQUERIES*/
+
+    /* Tablet View */
+    @media(max-width: 992px){
+
+      nav{
+        padding:20px 30px;
+      }
+
+      .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:60px 30px;
+      }
+
+      .hero-text h2{
+        font-size:3rem;
+      }
+
+      .cards{
+        grid-template-columns:repeat(2,1fr);
+        padding:40px 30px 60px;
+      }
+    }
+
+    /* Mobile View */
+    @media(max-width: 600px){
+
+      nav{
+       
+        gap:15px; flex-direction:column;
+      }
+
+      nav ul{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .hero-text h2{
+        font-size:2.2rem;
+      }
+
+      .hero-text p{
+        font-size:1rem;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:25px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NavBar -->
+  <nav>
+    <h1>ColorWave</h1>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+
+    <div class="hero-text">
+      <h2>Responsive Web Design</h2>
+
+      <p>
+        This webpage demonstrates how media queries work in CSS.
+        Resize the browser window to see the layout automatically
+        adapt for desktop, tablet, and mobile devices.
+      </p>
+
+      <button>Explore More</button>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+           alt="Coding Image">
+    </div>
+
+  </section>
+
+  <section class="cards">
+
+    <div class="card">
+      <h3>Desktop View</h3>
+      <p>
+        Large screens display content side by side with a 3-column layout.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Tablet View</h3>
+      <p>
+        Tablet screens adjust the layout into 2 columns for better readability.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Mobile View</h3>
+      <p>
+        Mobile screens stack all elements vertically for responsive design.
+      </p>
+    </div>
+
+  </section>
+
+
+  <footer>
+    Responsive Web Design Demo using HTML & CSS Media Queries
+  </footer>
+
+</body>
+</html>

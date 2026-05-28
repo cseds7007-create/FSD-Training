@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>YouTube Card Layout</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#0f0f0f;
+            padding:40px;
+            color:white;
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .title h1{
+            font-size:45px;
+            color:#ff0000;
+        }
+
+        .videos{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:#1f1f1f;
+            border-radius:15px;
+            overflow:hidden;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:scale(1.03);
+        }
+
+        .thumbnail{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .content{
+            display:flex;
+            padding:15px;
+            gap:15px;
+        }
+
+        .profile{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+
+        .details h3{
+            font-size:18px;
+            margin-bottom:8px;
+            line-height:1.5;
+        }
+
+        .details p{
+            color:#aaa;
+            font-size:14px;
+            margin-bottom:5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="title">
+
+        <h1>YouTube Card Layout</h1>
+
+    </div>
+
+    <div class="videos">
+
+        <!-- Card 1 -->
+        <div class="card">
+
+            <img 
+                class="thumbnail"
+                src="https://picsum.photos/id/1005/600/400"
+                alt="video"
+            >
+
+            <div class="content">
+
+                <img
+                    class="profile"
+                    src="https://picsum.photos/60"
+                    alt="profile"
+                >
+
+                <div class="details">
+
+                    <h3>
+                        Learn HTML & CSS Full Course
+                    </h3>
+
+                    <p>Code Academy</p>
+
+                    <p>1.2M views • 2 days ago</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+
+            <img 
+                class="thumbnail"
+                src="https://picsum.photos/id/1011/600/400"
+                alt="video"
+            >
+
+            <div class="content">
+
+                <img
+                    class="profile"
+                    src="https://picsum.photos/61"
+                    alt="profile"
+                >
+
+                <div class="details">
+
+                    <h3>
+                        JavaScript Crash Course
+                    </h3>
+
+                    <p>Web Dev Studio</p>
+
+                    <p>850K views • 1 week ago</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+
+            <img 
+                class="thumbnail"
+                src="https://picsum.photos/id/1021/600/400"
+                alt="video"
+            >
+
+            <div class="content">
+
+                <img
+                    class="profile"
+                    src="https://picsum.photos/62"
+                    alt="profile"
+                >
+
+                <div class="details">
+
+                    <h3>
+                        Responsive Website Tutorial
+                    </h3>
+
+                    <p>Frontend Mastery</p>
+
+                    <p>600K views • 5 days ago</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

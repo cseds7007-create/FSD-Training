@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Number Pattern Programs</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+}
+
+textarea{
+    width:100%;
+    height:320px;
+    margin-top:20px;
+    padding:20px;
+    font-family:monospace;
+    font-size:16px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+
+iframe{
+    width:100%;
+    height:250px;
+    margin-top:20px;
+    border:2px solid #ccc;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Number Pattern Programs</h1>
+
+<p>
+Practice loops and nested loops using number patterns.
+</p>
+
+<textarea id="code">
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+for(let i=1;i<=5;i++){
+
+    for(let j=1;j<=i;j++){
+
+        document.write(j + " ");
+
+    }
+
+    document.write("<br>");
+
+}
+
+</script>
+
+</body>
+</html>
+</textarea>
+
+<button onclick="runCode()">
+Run Program
+</button>
+
+<iframe id="output"></iframe>
+
+</div>
+
+<script>
+
+function runCode(){
+
+document.getElementById("output").srcdoc =
+document.getElementById("code").value;
+
+}
+
+</script>
+
+</body>
+</html>

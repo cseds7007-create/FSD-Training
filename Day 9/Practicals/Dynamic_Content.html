@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Dynamic Content Updates</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    width:600px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+}
+
+h1{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    margin-top:20px;
+    font-size:18px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:#111827;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.result{
+    margin-top:30px;
+    font-size:32px;
+    color:#38bdf8;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Dynamic Content Updates</h1>
+
+<p>
+Update webpage content dynamically using DOM manipulation.
+</p>
+
+<input type="text" id="name" placeholder="Enter your name">
+
+<button onclick="updateContent()">
+Update Content
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function updateContent(){
+
+let name =
+document.getElementById("name").value;
+
+document.getElementById("result").innerHTML =
+`Welcome ${name} 🎉`;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1016 @@
+<!-- export default function PromiseTeachingPage() {
+  const code1 = `let promise = new Promise((resolve,reject)=>{
+
+    let success = true;
+
+    if(success){
+        resolve("Data Loaded");
+    }else{
+        reject("Error");
+    }
+
+});
+
+promise
+.then(data=>console.log(data))
+.catch(err=>console.log(err));`;
+
+  const callbackHell = `loadData(function(result){
+    process(result,function(finalData){
+        save(finalData,function(done){
+            console.log(done);
+        });
+    });
+});`;
+
+  const asyncExample = `console.log("Start");
+
+setTimeout(() => {
+    console.log("Later");
+}, 2000);
+
+console.log("End");`;
+
+  const promiseFlow = `Promise Created
+      ↓
+   Pending
+      ↓
+success ?
+   /    \\
+ yes     no
+ ↓        ↓
+resolve   reject
+ ↓         ↓
+fulfilled rejected`;
+
+  const fetchExample = `let download = new Promise((resolve,reject)=>{
+
+    let internet = true;
+
+    if(internet){
+        resolve("File Downloaded");
+    }else{
+        reject("No Internet");
+    }
+
+});`;
+
+  const asyncAwait = `async function load(){
+
+    let data = await promise;
+
+    console.log(data);
+}`;
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white p-6 md:p-10">
+      <div className="max-w-7xl mx-auto space-y-10">
+
+        <div className="text-center space-y-4">
+          <h1 className="text-5xl font-bold">JavaScript Promises Complete Guide</h1>
+          <p className="text-slate-300 text-lg max-w-4xl mx-auto">
+            Learn Promises, Callbacks, Async Behavior, resolve(), reject(), then(), catch(), and async/await visually with beginner-friendly examples.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="What is a Promise?">
+            <p>
+              A Promise is a built-in JavaScript object used to handle asynchronous operations.
+            </p>
+            <div className="bg-slate-900 p-4 rounded-xl mt-4 border border-slate-700">
+              <p className="text-green-400 font-semibold">Real Life Analogy</p>
+              <ul className="list-disc ml-6 mt-2 space-y-2 text-slate-300">
+                <li>You order food online</li>
+                <li>The food is not delivered immediately</li>
+                <li>The app promises to deliver it later</li>
+                <li>Delivered → Success</li>
+                <li>Cancelled → Failure</li>
+              </ul>
+            </div>
+          </Card>
+
+          <Card title="Promise States">
+            <div className="space-y-4">
+              <State color="yellow" title="Pending" desc="Work is still happening" />
+              <State color="green" title="Fulfilled" desc="Operation completed successfully" />
+              <State color="red" title="Rejected" desc="Operation failed" />
+            </div>
+          </Card>
+        </div>
+
+        <SectionTitle title="Your Promise Example" />
+
+        <CodeBlock code={code1} />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="Is Promise Predefined?">
+            <p>
+              YES. Promise is a predefined built-in JavaScript class.
+            </p>
+            <div className="mt-4 bg-slate-900 p-4 rounded-xl border border-slate-700">
+              <code className="text-cyan-400">new Promise()</code>
+            </div>
+            <p className="mt-4 text-slate-300">
+              creates a new Promise object.
+            </p>
+          </Card>
+
+          <Card title="Initial Promise Object">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-green-400">
+{`Promise {
+   state: "pending",
+   result: undefined
+}`}
+            </pre>
+          </Card>
+        </div>
+
+        <SectionTitle title="Executor Function" />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="Executor Function">
+            <pre className="bg-slate-900 p-4 rounded-xl overflow-auto border border-slate-700 text-cyan-400">
+{`(resolve, reject) => {
+
+}`}
+            </pre>
+            <p className="mt-4 text-slate-300">
+              This function runs immediately when the promise is created.
+            </p>
+          </Card>
+
+          <Card title="Are resolve and reject predefined?">
+            <p>YES.</p>
+            <p className="mt-3 text-slate-300">
+              JavaScript automatically provides these two functions.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="bg-green-950 border border-green-700 rounded-xl p-4">
+                <h3 className="font-bold text-green-400">resolve()</h3>
+                <p className="text-sm mt-2">Marks promise as success</p>
+              </div>
+
+              <div className="bg-red-950 border border-red-700 rounded-xl p-4">
+                <h3 className="font-bold text-red-400">reject()</h3>
+                <p className="text-sm mt-2">Marks promise as failure</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <SectionTitle title="Execution Flow" />
+
+        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-700 overflow-auto">
+          <pre className="text-green-400 text-lg whitespace-pre-wrap">{promiseFlow}</pre>
+        </div>
+
+        <SectionTitle title="then() and catch()" />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="then()">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-cyan-400">
+{`.then(data => console.log(data))`}
+            </pre>
+            <ul className="list-disc ml-6 mt-4 space-y-2 text-slate-300">
+              <li>Runs when promise succeeds</li>
+              <li>Receives value from resolve()</li>
+              <li>Handles success operations</li>
+            </ul>
+          </Card>
+
+          <Card title="catch()">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-cyan-400">
+{`.catch(err => console.log(err))`}
+            </pre>
+            <ul className="list-disc ml-6 mt-4 space-y-2 text-slate-300">
+              <li>Runs when promise fails</li>
+              <li>Receives value from reject()</li>
+              <li>Handles errors</li>
+            </ul>
+          </Card>
+        </div>
+
+        <SectionTitle title="What Should You Learn Before Promises?" />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <MiniCard title="Functions" desc="Understand normal functions and arrow functions" />
+          <MiniCard title="Callbacks" desc="Functions passed into another function" />
+          <MiniCard title="setTimeout" desc="Understanding async behavior" />
+          <MiniCard title="Event Loop" desc="How JavaScript executes asynchronous code" />
+        </div>
+
+        <SectionTitle title="Callbacks" />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="What is a Callback?">
+            <p>
+              A callback is a function passed as an argument into another function.
+            </p>
+
+            <pre className="bg-slate-900 p-4 rounded-xl mt-4 border border-slate-700 overflow-auto text-green-400">
+{`function process(callback){
+    callback();
+}
+
+process(() => {
+    console.log("Done");
+});`}
+            </pre>
+          </Card>
+
+          <Card title="Why Promises Were Introduced">
+            <p>
+              Too many nested callbacks become difficult to manage.
+            </p>
+
+            <div className="mt-4 text-red-400 font-bold text-xl">
+              Callback Hell
+            </div>
+
+            <pre className="bg-slate-900 p-4 rounded-xl mt-4 border border-slate-700 overflow-auto text-yellow-400 text-sm">
+{callbackHell}
+            </pre>
+          </Card>
+        </div>
+
+        <SectionTitle title="Understanding Asynchronous JavaScript" />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="Async Example">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-cyan-400">
+{asyncExample}
+            </pre>
+          </Card>
+
+          <Card title="Output">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-green-400">
+{`Start
+End
+Later`}
+            </pre>
+
+            <p className="mt-4 text-slate-300">
+              JavaScript does not wait for setTimeout to complete.
+            </p>
+          </Card>
+        </div>
+
+        <SectionTitle title="Real Life Promise Example" />
+
+        <CodeBlock code={fetchExample} />
+
+        <SectionTitle title="Promise Methods" />
+
+        <div className="overflow-auto rounded-2xl border border-slate-700">
+          <table className="w-full">
+            <thead className="bg-slate-800">
+              <tr>
+                <th className="p-4 text-left">Method</th>
+                <th className="p-4 text-left">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <Row method="then()" purpose="Handle successful operations" />
+              <Row method="catch()" purpose="Handle errors" />
+              <Row method="finally()" purpose="Runs always" />
+              <Row method="Promise.all()" purpose="Waits for all promises" />
+              <Row method="Promise.race()" purpose="Returns first completed promise" />
+            </tbody>
+          </table>
+        </div>
+
+        <SectionTitle title="Promises and Async/Await" />
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card title="async/await Example">
+            <pre className="bg-slate-900 p-4 rounded-xl border border-slate-700 overflow-auto text-green-400">
+{asyncAwait}
+            </pre>
+          </Card>
+
+          <Card title="Important Concept">
+            <ul className="list-disc ml-6 space-y-3 text-slate-300">
+              <li>async/await is built on top of promises</li>
+              <li>await pauses execution until promise completes</li>
+              <li>Makes asynchronous code easier to read</li>
+            </ul>
+          </Card>
+        </div>
+
+        <SectionTitle title="Most Important Beginner Concept" />
+
+        <div className="bg-gradient-to-r from-cyan-900 to-blue-900 rounded-3xl p-8 border border-cyan-700">
+          <h2 className="text-3xl font-bold">resolve() does NOT return from function</h2>
+          <p className="mt-4 text-xl text-slate-200">
+            It changes the promise state from pending → fulfilled.
+          </p>
+        </div>
+
+        <SectionTitle title="Best Learning Order" />
+
+        <div className="grid md:grid-cols-4 gap-4">
+          {[
+            'Functions',
+            'Callbacks',
+            'setTimeout',
+            'Async Behavior',
+            'Promises',
+            'Fetch API',
+            'Async/Await',
+            'API Calls'
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-slate-900 border border-slate-700 rounded-2xl p-5 text-center hover:scale-105 transition"
+            >
+              <div className="text-2xl font-bold text-cyan-400">{index + 1}</div>
+              <div className="mt-2">{item}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+function Card({ title, children }) {
+  return (
+    <div className="bg-slate-800 border border-slate-700 rounded-3xl p-6 shadow-2xl">
+      <h2 className="text-2xl font-bold mb-4 text-cyan-400">{title}</h2>
+      <div className="text-slate-200 leading-8">{children}</div>
+    </div>
+  );
+}
+
+function MiniCard({ title, desc }) {
+  return (
+    <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 hover:scale-105 transition">
+      <h3 className="text-xl font-bold text-cyan-400">{title}</h3>
+      <p className="mt-3 text-slate-300">{desc}</p>
+    </div>
+  );
+}
+
+function State({ color, title, desc }) {
+  const map = {
+    green: 'bg-green-900 border-green-700 text-green-300',
+    yellow: 'bg-yellow-900 border-yellow-700 text-yellow-300',
+    red: 'bg-red-900 border-red-700 text-red-300'
+  };
+
+  return (
+    <div className={`rounded-2xl border p-5 ${map[color]}`}>
+      <h3 className="text-2xl font-bold">{title}</h3>
+      <p className="mt-2">{desc}</p>
+    </div>
+  );
+}
+
+function SectionTitle({ title }) {
+  return (
+    <div className="pt-8">
+      <h2 className="text-4xl font-bold border-b border-slate-700 pb-4 text-white">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
+function CodeBlock({ code }) {
+  return (
+    <pre className="bg-black border border-slate-700 rounded-3xl p-6 overflow-auto text-green-400 text-sm md:text-base leading-7">
+      {code}
+    </pre>
+  );
+}
+
+function Row({ method, purpose }) {
+  return (
+    <tr className="border-t border-slate-700">
+      <td className="p-4 text-cyan-400 font-bold">{method}</td>
+      <td className="p-4 text-slate-300">{purpose}</td>
+    </tr>
+  );
+} -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Promises</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#0f172a;
+      color:white;
+      line-height:1.7;
+      padding:30px;
+    }
+
+    .container{
+      max-width:1400px;
+      margin:auto;
+    }
+
+    h1{
+      font-size:55px;
+      text-align:center;
+      margin-bottom:20px;
+      color:#38bdf8;
+    }
+
+    .subtitle{
+      text-align:center;
+      font-size:20px;
+      color:#cbd5e1;
+      margin-bottom:50px;
+    }
+
+    .section-title{
+      font-size:40px;
+      margin:60px 0 25px;
+      border-bottom:2px solid #334155;
+      padding-bottom:10px;
+      color:white;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:25px;
+      margin-top:20px;
+    }
+
+    .card{
+      background:#1e293b;
+      padding:25px;
+      border-radius:20px;
+      border:1px solid #334155;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .card h2{
+      color:#38bdf8;
+      margin-bottom:15px;
+      font-size:30px;
+    }
+
+    .mini-card{
+      background:#1e293b;
+      border-radius:20px;
+      padding:25px;
+      border:1px solid #334155;
+      transition:0.3s;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .mini-card h3{
+      color:#38bdf8;
+      margin-bottom:10px;
+    }
+
+    .code-block{
+      background:black;
+      color:#22c55e;
+      padding:25px;
+      border-radius:20px;
+      overflow:auto;
+      border:1px solid #334155;
+      margin-top:20px;
+      font-size:16px;
+    }
+
+    .state{
+      padding:20px;
+      border-radius:15px;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    .pending{
+      background:#713f12;
+      border:1px solid #facc15;
+      color:#fde047;
+    }
+
+    .fulfilled{
+      background:#14532d;
+      border:1px solid #22c55e;
+      color:#4ade80;
+    }
+
+    .rejected{
+      background:#7f1d1d;
+      border:1px solid #ef4444;
+      color:#f87171;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    th{
+      background:#334155;
+      padding:15px;
+      text-align:left;
+    }
+
+    td{
+      padding:15px;
+      border-top:1px solid #334155;
+    }
+
+    .highlight{
+      background:linear-gradient(to right,#0f766e,#1d4ed8);
+      padding:40px;
+      border-radius:25px;
+      margin-top:30px;
+    }
+
+    .highlight h2{
+      font-size:35px;
+      margin-bottom:15px;
+    }
+
+    .learning-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .step{
+      background:#1e293b;
+      border:1px solid #334155;
+      padding:25px;
+      border-radius:20px;
+      text-align:center;
+      transition:0.3s;
+    }
+
+    .step:hover{
+      transform:scale(1.05);
+    }
+
+    .step-number{
+      font-size:40px;
+      color:#38bdf8;
+      font-weight:bold;
+    }
+
+    ul{
+      margin-left:25px;
+      margin-top:10px;
+    }
+
+    li{
+      margin-bottom:10px;
+    }
+
+    .flow{
+      background:#111827;
+      padding:30px;
+      border-radius:20px;
+      border:1px solid #334155;
+      color:#22c55e;
+      font-size:20px;
+      white-space:pre-wrap;
+      margin-top:20px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <h1>JavaScript Promises</h1>
+
+  <p class="subtitle">
+    Learn Promises, resolve(), reject(), then(), catch(), async/await, callbacks, and asynchronous JavaScript visually.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>What is a Promise?</h2>
+
+      <p>
+        A Promise is a built-in JavaScript object used for handling asynchronous operations.
+      </p>
+
+      <br>
+
+      <h3 style="color:#4ade80;">Real Life Analogy</h3>
+
+      <ul>
+        <li>You order food online</li>
+        <li>The food is not delivered immediately</li>
+        <li>The app promises delivery later</li>
+        <li>Delivered → Success</li>
+        <li>Cancelled → Failure</li>
+      </ul>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Promise States</h2>
+
+      <div class="state pending">
+        Pending → Work is still happening
+      </div>
+
+      <div class="state fulfilled">
+        Fulfilled → Operation completed successfully
+      </div>
+
+      <div class="state rejected">
+        Rejected → Operation failed
+      </div>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Your Promise Example</h2>
+
+  <pre class="code-block">
+let promise = new Promise((resolve,reject)=>{
+
+    let success = true;
+
+    if(success){
+        resolve("Data Loaded");
+    }else{
+        reject("Error");
+    }
+
+});
+
+promise
+.then(data=>console.log(data))
+.catch(err=>console.log(err));
+  </pre>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>Is Promise Predefined?</h2>
+
+      <p>
+        YES. Promise is a predefined built-in JavaScript class.
+      </p>
+
+      <br>
+
+      <div class="code-block">
+new Promise()
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Initial Promise Object</h2>
+
+      <pre class="code-block">
+Promise {
+   state: "pending",
+   result: undefined
+}
+      </pre>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Executor Function</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>Executor Function</h2>
+
+      <pre class="code-block">
+(resolve, reject) => {
+
+}
+      </pre>
+
+      <p>
+        This function runs immediately when the promise is created.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h2>resolve() and reject()</h2>
+
+      <p>
+        JavaScript automatically provides these functions.
+      </p>
+
+      <br>
+
+      <div class="state fulfilled">
+        resolve() → Marks promise as success
+      </div>
+
+      <div class="state rejected">
+        reject() → Marks promise as failure
+      </div>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Execution Flow</h2>
+
+  <div class="flow">
+Promise Created
+      ↓
+   Pending
+      ↓
+success ?
+   /    \
+ yes     no
+ ↓        ↓
+resolve   reject
+ ↓         ↓
+fulfilled rejected
+  </div>
+
+  <h2 class="section-title">then() and catch()</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>then()</h2>
+
+      <pre class="code-block">
+.then(data => console.log(data))
+      </pre>
+
+      <ul>
+        <li>Runs when promise succeeds</li>
+        <li>Receives value from resolve()</li>
+        <li>Handles successful operations</li>
+      </ul>
+
+    </div>
+
+    <div class="card">
+
+      <h2>catch()</h2>
+
+      <pre class="code-block">
+.catch(err => console.log(err))
+      </pre>
+
+      <ul>
+        <li>Runs when promise fails</li>
+        <li>Receives value from reject()</li>
+        <li>Handles errors</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">What Should You Learn Before Promises?</h2>
+
+  <div class="grid">
+
+    <div class="mini-card">
+      <h3>Functions</h3>
+      <p>Understand normal and arrow functions</p>
+    </div>
+
+    <div class="mini-card">
+      <h3>Callbacks</h3>
+      <p>Functions passed into another function</p>
+    </div>
+
+    <div class="mini-card">
+      <h3>setTimeout</h3>
+      <p>Understanding async behavior</p>
+    </div>
+
+    <div class="mini-card">
+      <h3>Event Loop</h3>
+      <p>How JavaScript handles asynchronous code</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Callback Hell</h2>
+
+  <pre class="code-block">
+loadData(function(result){
+    process(result,function(finalData){
+        save(finalData,function(done){
+            console.log(done);
+        });
+    });
+});
+  </pre>
+
+  <h2 class="section-title">Asynchronous JavaScript</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>Example</h2>
+
+      <pre class="code-block">
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Later");
+}, 2000);
+
+console.log("End");
+      </pre>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Output</h2>
+
+      <pre class="code-block">
+Start
+End
+Later
+      </pre>
+
+      <p>
+        JavaScript does not wait for setTimeout to complete.
+      </p>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Promise Methods</h2>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>then()</td>
+        <td>Handle successful operations</td>
+      </tr>
+
+      <tr>
+        <td>catch()</td>
+        <td>Handle errors</td>
+      </tr>
+
+      <tr>
+        <td>finally()</td>
+        <td>Runs always</td>
+      </tr>
+
+      <tr>
+        <td>Promise.all()</td>
+        <td>Waits for all promises</td>
+      </tr>
+
+      <tr>
+        <td>Promise.race()</td>
+        <td>Returns first completed promise</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <h2 class="section-title">Promises and Async/Await</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>async/await Example</h2>
+
+      <pre class="code-block">
+async function load(){
+
+    let data = await promise;
+
+    console.log(data);
+}
+      </pre>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Important Concepts</h2>
+
+      <ul>
+        <li>async/await is built on top of promises</li>
+        <li>await pauses execution until promise completes</li>
+        <li>Makes asynchronous code easier to read</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Most Important Beginner Concept</h2>
+
+  <div class="highlight">
+
+    <h2>resolve() does NOT return from function</h2>
+
+    <p style="font-size:22px;">
+      It changes promise state from pending → fulfilled.
+    </p>
+
+  </div>
+
+  <h2 class="section-title">Best Learning Order</h2>
+
+  <div class="learning-grid">
+
+    <div class="step">
+      <div class="step-number">1</div>
+      Functions
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      Callbacks
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      setTimeout
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      Async Behavior
+    </div>
+
+    <div class="step">
+      <div class="step-number">5</div>
+      Promises
+    </div>
+
+    <div class="step">
+      <div class="step-number">6</div>
+      Fetch API
+    </div>
+
+    <div class="step">
+      <div class="step-number">7</div>
+      Async/Await
+    </div>
+
+    <div class="step">
+      <div class="step-number">8</div>
+      API Calls
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

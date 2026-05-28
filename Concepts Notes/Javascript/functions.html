@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Functions Masterclass</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    line-height:1.7;
+}
+
+header{
+    padding:30px;
+    text-align:center;
+    background:#111827;
+    border-bottom:3px solid #38bdf8;
+}
+
+header h1{
+    font-size:42px;
+    color:#38bdf8;
+}
+
+section{
+    padding:30px;
+    border-bottom:1px solid #334155;
+}
+
+h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+.code{
+    background:black;
+    color:#22c55e;
+    padding:15px;
+    border-radius:10px;
+    overflow:auto;
+    margin-top:15px;
+    white-space:pre-wrap;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#38bdf8;
+    color:black;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#0ea5e9;
+}
+
+.output{
+    background:#020617;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    min-height:50px;
+    border:1px solid #334155;
+}
+
+.flex{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.box{
+    flex:1;
+    min-width:250px;
+    background:#111827;
+    padding:20px;
+    border-radius:10px;
+}
+
+.flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.flow div{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+}
+
+.arrow{
+    font-size:30px;
+    color:#38bdf8;
+}
+
+.highlight{
+    color:#facc15;
+}
+
+.big{
+    font-size:22px;
+    margin-top:10px;
+}
+
+.promise-box{
+    display:flex;
+    gap:20px;
+    margin-top:20px;
+}
+
+.state{
+    flex:1;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.pending{
+    background:#92400e;
+}
+
+.fulfilled{
+    background:#166534;
+}
+
+.rejected{
+    background:#991b1b;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Functions Masterclass</h1>
+    <p>Beginner → Advanced Concepts</p>
+</header>
+
+<section>
+    <h2>1. Why Functions Exist?</h2>
+
+    <div class="card">
+        <p>
+            Functions are reusable blocks of code.
+            Without functions we repeat code again and again.
+        </p>
+
+        <div class="flow">
+            <div>Write Code Again</div>
+            <div class="arrow">❌</div>
+            <div>Duplicate Logic</div>
+        </div>
+
+        <div class="flow">
+            <div>Function</div>
+            <div class="arrow">➡</div>
+            <div>Reuse Anywhere</div>
+        </div>
+
+<div class="code">
+function greet(name){
+   return "Hello " + name;
+}
+
+console.log(greet("John"));
+console.log(greet("David"));
+</div>
+
+    </div>
+</section>
+
+<section>
+<h2>2. Parameters vs Arguments</h2>
+
+<div class="card">
+
+<div class="flow">
+<div>Parameter = Placeholder</div>
+<div class="arrow">➡</div>
+<div>Argument = Actual Value</div>
+</div>
+
+<div class="code">
+function add(a,b){ // parameters
+   return a+b;
+}
+
+add(5,10); // arguments
+</div>
+
+<button onclick="showParams()">Run Example</button>
+
+<div class="output" id="paramsOutput"></div>
+
+</div>
+</section>
+
+<section>
+
+<h2>3. Return Statement</h2>
+
+<div class="card">
+
+<p>
+Return sends data back from the function.
+After return executes, function stops.
+</p>
+
+<div class="code">
+function multiply(a,b){
+   return a*b;
+}
+
+let result = multiply(5,4);
+console.log(result);
+</div>
+
+<button onclick="showReturn()">Run</button>
+
+<div class="output" id="returnOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>4. Callback Functions</h2>
+
+<div class="card">
+
+<h3>What Problem Do Callbacks Solve?</h3>
+
+<p>
+Sometimes JavaScript should wait until another task finishes.
+Example:
+</p>
+
+<ul>
+<li>Button Click</li>
+<li>API Response</li>
+<li>Timer Completion</li>
+<li>File Loading</li>
+</ul>
+
+<p class="big highlight">
+"Run this function later when task finishes"
+</p>
+
+<div class="flow">
+<div>Main Function</div>
+<div class="arrow">➡</div>
+<div>Receives Callback</div>
+<div class="arrow">➡</div>
+<div>Executes Later</div>
+</div>
+
+<div class="code">
+function processUser(name, callback){
+    console.log("Processing user...");
+
+    callback(name);
+}
+
+function greetUser(name){
+    console.log("Hello " + name);
+}
+
+processUser("Krishna", greetUser);
+</div>
+
+<button onclick="runCallback()">Run Callback Example</button>
+
+<div class="output" id="callbackOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>5. Why JavaScript Needs Async?</h2>
+
+<div class="card">
+
+<p>
+JavaScript is Single Threaded.
+It runs one line at a time.
+</p>
+
+<p>
+If one task takes long time:
+</p>
+
+<div class="code">
+fetchHugeData();
+</div>
+
+<p>
+Entire webpage freezes.
+</p>
+
+<h3>Solution → Async Programming</h3>
+
+<div class="flow">
+<div>User Clicks</div>
+<div class="arrow">➡</div>
+<div>Long Task Starts</div>
+<div class="arrow">➡</div>
+<div>JS Continues Other Work</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>6. setTimeout Example (Async Nature)</h2>
+
+<div class="card">
+
+<div class="code">
+console.log("Start");
+
+setTimeout(()=>{
+   console.log("Inside Timeout");
+},2000);
+
+console.log("End");
+</div>
+
+<button onclick="runTimeout()">Run Example</button>
+
+<div class="output" id="timeoutOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>7. Promises</h2>
+
+<div class="card">
+
+<p>
+Promises represent future completion of an async operation.
+</p>
+
+<div class="promise-box">
+
+<div class="state pending">
+<h3>Pending</h3>
+<p>Operation Running</p>
+</div>
+
+<div class="state fulfilled">
+<h3>Fulfilled</h3>
+<p>Success</p>
+</div>
+
+<div class="state rejected">
+<h3>Rejected</h3>
+<p>Error</p>
+</div>
+
+</div>
+
+<div class="code">
+let promise = new Promise((resolve,reject)=>{
+
+    let success = true;
+
+    if(success){
+        resolve("Data Loaded");
+    }else{
+        reject("Error");
+    }
+
+});
+
+promise
+.then(data=>console.log(data))
+.catch(err=>console.log(err));
+</div>
+
+<button onclick="runPromise()">Run Promise</button>
+
+<div class="output" id="promiseOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>8. Why Async/Await?</h2>
+
+<div class="card">
+
+<h3>Problem With Promises</h3>
+
+<p>
+Too many .then() chains become difficult.
+</p>
+
+<div class="code">
+fetchData()
+.then()
+.then()
+.then()
+</div>
+
+<h3>Solution → async / await</h3>
+
+<p>
+Looks like synchronous code.
+Cleaner and easier to read.
+</p>
+
+<div class="code">
+async function getData(){
+
+   let result = await fetchSomething();
+
+   console.log(result);
+}
+</div>
+
+<div class="flow">
+<div>await</div>
+<div class="arrow">➡</div>
+<div>Pause Function</div>
+<div class="arrow">➡</div>
+<div>Wait For Promise</div>
+</div>
+
+<button onclick="runAsyncAwait()">Run Async/Await</button>
+
+<div class="output" id="asyncOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>9. Higher Order Functions</h2>
+
+<div class="card">
+
+<p>
+A Higher Order Function:
+</p>
+
+<ul>
+<li>Takes another function as argument</li>
+<li>OR returns another function</li>
+</ul>
+
+<h3>Why Use Them?</h3>
+
+<ul>
+<li>Reusable Logic</li>
+<li>Cleaner Code</li>
+<li>Functional Programming</li>
+<li>Used heavily in React</li>
+</ul>
+
+<div class="code">
+function calculate(a,b,operation){
+    return operation(a,b);
+}
+
+function add(x,y){
+    return x+y;
+}
+
+console.log(calculate(5,3,add));
+</div>
+
+<button onclick="runHOF()">Run HOF</button>
+
+<div class="output" id="hofOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>10. map(), filter(), reduce()</h2>
+
+<div class="card">
+
+<h3>map()</h3>
+
+<p>Transforms every element.</p>
+
+<div class="code">
+let nums = [1,2,3];
+
+let doubled = nums.map(n=>n*2);
+</div>
+
+<h3>filter()</h3>
+
+<p>Filters elements.</p>
+
+<div class="code">
+let even = nums.filter(n=>n%2===0);
+</div>
+
+<h3>reduce()</h3>
+
+<p>Accumulates values.</p>
+
+<div class="code">
+let total = nums.reduce((sum,n)=>sum+n,0);
+</div>
+
+<button onclick="runArrayMethods()">Run</button>
+
+<div class="output" id="arrayOutput"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>11. Callback Hell</h2>
+
+<div class="card">
+
+<p>
+Nested callbacks become messy.
+</p>
+
+<div class="code">
+login(function(){
+
+   getUser(function(){
+
+      getPosts(function(){
+
+      });
+
+   });
+
+});
+</div>
+
+<h3>Solution</h3>
+
+<ul>
+<li>Promises</li>
+<li>Async/Await</li>
+</ul>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>12. Event Loop Visualization</h2>
+
+<div class="card">
+
+<div class="flow">
+<div>Call Stack</div>
+<div class="arrow">➡</div>
+<div>Web APIs</div>
+<div class="arrow">➡</div>
+<div>Callback Queue</div>
+<div class="arrow">➡</div>
+<div>Event Loop</div>
+</div>
+
+<p>
+JavaScript sends async tasks to browser APIs.
+When completed, callbacks enter queue.
+Event Loop pushes them back to Call Stack.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>13. Real World Usage</h2>
+
+<div class="card">
+
+<div class="flex">
+
+<div class="box">
+<h3>Callbacks</h3>
+<p>Button Clicks</p>
+<p>Events</p>
+<p>Timers</p>
+</div>
+
+<div class="box">
+<h3>Promises</h3>
+<p>API Calls</p>
+<p>Database Requests</p>
+</div>
+
+<div class="box">
+<h3>Async/Await</h3>
+<p>Modern Async Code</p>
+<p>React Apps</p>
+</div>
+
+<div class="box">
+<h3>Higher Order Functions</h3>
+<p>Array Processing</p>
+<p>Functional Programming</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>14. Important Interview Questions</h2>
+
+<div class="card">
+
+<ul>
+<li>Difference between synchronous and asynchronous?</li>
+<li>What are callbacks?</li>
+<li>What is callback hell?</li>
+<li>What are promises?</li>
+<li>Difference between async/await and promises?</li>
+<li>What is higher order function?</li>
+<li>Difference between parameters and arguments?</li>
+<li>What is closure?</li>
+<li>What is event loop?</li>
+</ul>
+
+</div>
+
+</section>
+
+<script>
+
+function showParams(){
+
+    document.getElementById("paramsOutput").innerHTML =
+    `
+    Function add(a,b)
+
+    a and b are PARAMETERS
+
+    add(5,10)
+
+    5 and 10 are ARGUMENTS
+    `;
+}
+
+function showReturn(){
+
+    function multiply(a,b){
+        return a*b;
+    }
+
+    let result = multiply(5,4);
+
+    document.getElementById("returnOutput").innerHTML =
+    "Result = " + result;
+}
+
+function runCallback(){
+
+    let output = document.getElementById("callbackOutput");
+
+    output.innerHTML = "";
+
+    function processUser(name, callback){
+
+        output.innerHTML += "Processing User...<br>";
+
+        callback(name);
+    }
+
+    function greetUser(name){
+
+        output.innerHTML += "Hello " + name;
+    }
+
+    processUser("Krishna", greetUser);
+}
+
+function runTimeout(){
+
+    let output = document.getElementById("timeoutOutput");
+
+    output.innerHTML = "Start<br>";
+
+    setTimeout(()=>{
+
+        output.innerHTML += "Inside Timeout After 2 Seconds<br>";
+
+    },2000);
+
+    output.innerHTML += "End<br>";
+}
+
+function runPromise(){
+
+    let output = document.getElementById("promiseOutput");
+
+    output.innerHTML = "Promise Started...<br>";
+
+    let promise = new Promise((resolve,reject)=>{
+
+        setTimeout(()=>{
+
+            resolve("Data Loaded Successfully");
+
+        },2000);
+
+    });
+
+    promise.then(data=>{
+
+        output.innerHTML += data;
+
+    });
+}
+
+async function runAsyncAwait(){
+
+    let output = document.getElementById("asyncOutput");
+
+    output.innerHTML = "Loading Data...<br>";
+
+    function fetchData(){
+
+        return new Promise(resolve=>{
+
+            setTimeout(()=>{
+
+                resolve("Data Received");
+
+            },2000);
+
+        });
+    }
+
+    let result = await fetchData();
+
+    output.innerHTML += result;
+}
+
+function runHOF(){
+
+    let output = document.getElementById("hofOutput");
+
+    function calculate(a,b,operation){
+
+        return operation(a,b);
+    }
+
+    function add(x,y){
+
+        return x+y;
+    }
+
+    let result = calculate(10,5,add);
+
+    output.innerHTML = 
+    "Higher Order Function Result = " + result;
+}
+
+function runArrayMethods(){
+
+    let output = document.getElementById("arrayOutput");
+
+    let nums = [1,2,3,4,5];
+
+    let doubled = nums.map(n=>n*2);
+
+    let even = nums.filter(n=>n%2===0);
+
+    let total = nums.reduce((sum,n)=>sum+n,0);
+
+    output.innerHTML =
+    `
+    Original: ${nums}<br><br>
+
+    map(): ${doubled}<br><br>
+
+    filter(): ${even}<br><br>
+
+    reduce(): ${total}
+    `;
+}
+
+</script>
+
+</body>
+</html>

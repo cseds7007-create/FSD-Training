@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOM Manipulation Demo</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial;
+    }
+
+    body{
+        background:#f4f4f4;
+        padding:30px;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:30px;
+    }
+
+    .container{
+        max-width:1000px;
+        margin:auto;
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .box{
+        margin-bottom:30px;
+        padding:20px;
+        border:2px solid #ddd;
+        border-radius:10px;
+    }
+
+    button{
+        padding:10px 20px;
+        border:none;
+        background:#007bff;
+        color:white;
+        border-radius:5px;
+        cursor:pointer;
+        margin-top:10px;
+    }
+
+    button:hover{
+        background:#0056b3;
+    }
+
+    input{
+        padding:10px;
+        width:250px;
+        margin-top:10px;
+    }
+
+    #colorBox{
+        width:200px;
+        height:100px;
+        background:orange;
+        margin-top:15px;
+        border-radius:10px;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>JavaScript DOM Manipulation Demo</h1>
+
+    <!-- Example 1 -->
+    <div class="box">
+
+        <h2>1. Changing Text using DOM</h2>
+
+        <p id="message">
+            Welcome to JavaScript DOM
+        </p>
+
+        <button onclick="changeText()">
+            Change Text
+        </button>
+
+    </div>
+
+
+    <!-- Example 2 -->
+    <div class="box">
+
+        <h2>2. Changing CSS using JavaScript</h2>
+
+        <div id="colorBox"></div>
+
+        <button onclick="changeColor()">
+            Change Color
+        </button>
+
+    </div>
+
+
+    <!-- Example 3 -->
+    <div class="box">
+
+        <h2>3. Taking Input from User</h2>
+
+        <input type="text" id="username" placeholder="Enter Your Name">
+
+        <br>
+
+        <button onclick="showName()">
+            Submit
+        </button>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+
+    <!-- Example 4 -->
+    <div class="box">
+
+        <h2>4. Creating Elements Dynamically</h2>
+
+        <button onclick="createElementDemo()">
+            Create New Paragraph
+        </button>
+
+        <div id="newElementContainer"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+        HTML Parsing Process
+        --------------------
+
+        Browser reads HTML
+                ↓
+        Creates DOM Tree
+                ↓
+        JavaScript accesses DOM
+                ↓
+        JavaScript manipulates elements
+    */
+
+
+    // Example 1
+    // Event Handling + DOM Manipulation
+
+    function changeText(){
+
+        // Accessing element from DOM
+        let element = document.getElementById("message");
+
+        // Manipulating DOM content
+        element.innerHTML = "Text Changed using JavaScript DOM Manipulation";
+
+    }
+
+
+
+    // Example 2
+    // Manipulating CSS Properties
+
+    function changeColor(){
+
+        let box = document.getElementById("colorBox");
+
+        box.style.background = "green";
+
+    }
+
+
+
+    // Example 3
+    // Reading User Input
+
+    function showName(){
+
+        // Getting value from input field
+        let name = document.getElementById("username").value;
+
+        // Displaying result dynamically
+        document.getElementById("result").innerHTML =
+        "Hello " + name;
+
+    }
+
+
+
+    // Example 4
+    // Creating Elements Dynamically
+
+    function createElementDemo(){
+
+        // Creating new paragraph
+        let para = document.createElement("p");
+
+        console.log(para);
+        // Adding text
+        para.innerHTML =
+        "New Paragraph Added using createElement()";
+
+
+        // console.log(para);
+        // Appending element to DOM
+        document
+        .getElementById("newElementContainer")
+        .appendChild(para);
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User Input Examples</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+textarea{
+    width:100%;
+    height:300px;
+    margin-top:20px;
+    padding:20px;
+    font-family:monospace;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+
+iframe{
+    width:100%;
+    height:250px;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>User Input Example</h1>
+
+<p>
+JavaScript can accept user input using prompt().
+</p>
+
+<textarea id="code">
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+let name = prompt("Enter your name");
+
+document.write("Welcome " + name);
+
+</script>
+
+</body>
+</html>
+</textarea>
+
+<button onclick="runCode()">
+Run Program
+</button>
+
+<iframe id="output"></iframe>
+
+</div>
+
+<script>
+
+function runCode(){
+
+document.getElementById("output").srcdoc =
+document.getElementById("code").value;
+
+}
+
+</script>
+
+</body>
+</html>

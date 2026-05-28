@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>jQuery Challenges</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    padding:40px;
+    color:white;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.title h1{
+    font-size:55px;
+}
+
+.title p{
+    margin-top:15px;
+    color:#cbd5e1;
+    font-size:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    max-width:1500px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#38bdf8;
+}
+
+.card p{
+    color:#d1d5db;
+    line-height:1.8;
+}
+
+.demo{
+    margin-top:25px;
+    text-align:center;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:#111827;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.box{
+    width:100px;
+    height:100px;
+    background:#38bdf8;
+    margin:20px auto;
+    border-radius:15px;
+}
+
+.output{
+    margin-top:20px;
+    font-size:20px;
+    color:#38bdf8;
+}
+
+@media(max-width:1000px){
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="title">
+
+<h1>jQuery Challenges</h1>
+
+<p>
+Interactive jQuery mini projects and animations.
+</p>
+
+</div>
+
+<div class="grid">
+
+<!-- Animated UI -->
+<div class="card">
+
+<h2>Build Animated UI</h2>
+
+<p>
+Create animated user interfaces using jQuery effects.
+</p>
+
+<div class="demo">
+
+<div class="box" id="uiBox"></div>
+
+<button id="uiBtn">
+Animate UI
+</button>
+
+</div>
+
+</div>
+
+<!-- DOM Effects -->
+<div class="card">
+
+<h2>DOM Effects with jQuery</h2>
+
+<p>
+Use fade, slide and toggle effects dynamically.
+</p>
+
+<div class="demo">
+
+<div class="box" id="effectBox"></div>
+
+<button id="effectBtn">
+Toggle Effects
+</button>
+
+</div>
+
+</div>
+
+<!-- Interactive Animations -->
+<div class="card">
+
+<h2>Interactive Animations</h2>
+
+<p>
+Build interactive animations triggered by events.
+</p>
+
+<div class="demo">
+
+<div class="box" id="interactiveBox"></div>
+
+<button id="interactiveBtn">
+Start Animation
+</button>
+
+<div class="output" id="interactiveText"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+$("#uiBtn").click(function(){
+
+$("#uiBox").animate({
+    width:"200px",
+    height:"200px",
+    opacity:"0.5"
+},1000);
+
+});
+
+$("#effectBtn").click(function(){
+
+$("#effectBox").fadeToggle(1000);
+
+});
+
+$("#interactiveBtn").click(function(){
+
+$("#interactiveBox").animate({
+    marginLeft:"150px",
+    borderRadius:"50%"
+},1000,function(){
+
+$("#interactiveText").text(
+"Animation Completed Successfully!"
+);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

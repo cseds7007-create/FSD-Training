@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Variables Scope Demonstration</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      padding:20px;
+      color:#222;
+      line-height:1.6;
+    }
+
+    h1{
+      text-align:center;
+      color:#0d6efd;
+      margin-bottom:30px;
+    }
+
+    .section{
+      background:white;
+      padding:25px;
+      margin-bottom:25px;
+      border-radius:14px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section h2{
+      color:#0d6efd;
+      margin-bottom:15px;
+    }
+
+    .concept{
+      background:#eef4ff;
+      border-left:5px solid #0d6efd;
+      padding:14px;
+      border-radius:6px;
+      margin-bottom:15px;
+    }
+
+    .highlight{
+      color:#dc3545;
+      font-weight:bold;
+    }
+
+    .good{
+      color:#198754;
+      font-weight:bold;
+    }
+
+    button{
+      padding:10px 18px;
+      border:none;
+      background:#0d6efd;
+      color:white;
+      border-radius:8px;
+      cursor:pointer;
+      margin-top:10px;
+      font-size:15px;
+    }
+
+    button:hover{
+      background:#084298;
+    }
+
+    .output{
+      margin-top:15px;
+      background:#1e1e1e;
+      color:#00ff99;
+      padding:15px;
+      border-radius:10px;
+      min-height:60px;
+      white-space:pre-line;
+      overflow:auto;
+      font-size:15px;
+    }
+
+    .scope-container{
+      display:flex;
+      gap:20px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+
+    .scope-box{
+      flex:1;
+      min-width:250px;
+      padding:20px;
+      border-radius:12px;
+      color:white;
+    }
+
+    .global{
+      background:#0d6efd;
+    }
+
+    .function{
+      background:#198754;
+    }
+
+    .block{
+      background:#dc3545;
+    }
+
+    code{
+      background:#eee;
+      padding:2px 6px;
+      border-radius:4px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:15px;
+    }
+
+    table th,
+    table td{
+      border:1px solid #ccc;
+      padding:12px;
+      text-align:left;
+    }
+
+    table th{
+      background:#0d6efd;
+      color:white;
+    }
+
+    .visual{
+      margin-top:20px;
+      padding:20px;
+      border:2px dashed #0d6efd;
+      border-radius:10px;
+    }
+
+    .box{
+      padding:15px;
+      margin:10px;
+      border-radius:10px;
+      color:white;
+      font-weight:bold;
+    }
+
+    .global-box{
+      background:#0d6efd;
+    }
+
+    .function-box{
+      background:#198754;
+      margin-left:40px;
+    }
+
+    .block-box{
+      background:#dc3545;
+      margin-left:80px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>JavaScript Variables & Scope Demonstration</h1>
+
+  <!-- INTRO -->
+  <div class="section">
+
+    <h2>1. Why Variables?</h2>
+
+    <div class="concept">
+      Variables are containers used to store data.<br><br>
+
+      Example:
+      <code>let age = 22;</code><br>
+
+      Here:
+      <ul>
+        <li><b>age</b> → variable name</li>
+        <li><b>22</b> → stored value</li>
+      </ul>
+    </div>
+
+    <button onclick="showWhyVariables()">Run Example</button>
+
+    <div class="output" id="whyOutput"></div>
+
+  </div>
+
+  <!-- VAR LET CONST -->
+  <div class="section">
+
+    <h2>2. var vs let vs const</h2>
+
+    <table>
+
+      <tr>
+        <th>Keyword</th>
+        <th>Can Reassign?</th>
+        <th>Scope</th>
+        <th>Modern Usage</th>
+      </tr>
+
+      <tr>
+        <td>var</td>
+        <td>YES</td>
+        <td>Function Scope</td>
+        <td>Avoid Mostly</td>
+      </tr>
+
+      <tr>
+        <td>let</td>
+        <td>YES</td>
+        <td>Block Scope</td>
+        <td>Most Common</td>
+      </tr>
+
+      <tr>
+        <td>const</td>
+        <td>NO</td>
+        <td>Block Scope</td>
+        <td>Best for Fixed Values</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <!-- VAR -->
+  <div class="section">
+
+    <h2>3. Understanding var</h2>
+
+    <div class="concept">
+
+      <span class="highlight">Problem with var:</span>
+
+      <ul>
+        <li>Function scoped</li>
+        <li>Can redeclare variables</li>
+        <li>Can create bugs</li>
+      </ul>
+
+    </div>
+
+    <button onclick="showVar()">Demonstrate var</button>
+
+    <div class="output" id="varOutput"></div>
+
+  </div>
+
+  <!-- LET -->
+  <div class="section">
+
+    <h2>4. Understanding let</h2>
+
+    <div class="concept">
+
+      <span class="good">Why let is better:</span>
+
+      <ul>
+        <li>Block scoped</li>
+        <li>Safer than var</li>
+        <li>Can update values</li>
+      </ul>
+
+    </div>
+
+    <button onclick="showLet()">Demonstrate let</button>
+
+    <div class="output" id="letOutput"></div>
+
+  </div>
+
+  <!-- CONST -->
+  <div class="section">
+
+    <h2>5. Understanding const</h2>
+
+    <div class="concept">
+
+      <span class="good">Why use const:</span>
+
+      <ul>
+        <li>Prevents accidental reassignment</li>
+        <li>Makes code safer</li>
+        <li>Used for fixed values</li>
+      </ul>
+
+    </div>
+
+    <button onclick="showConst()">Demonstrate const</button>
+
+    <div class="output" id="constOutput"></div>
+
+  </div>
+
+  <!-- SCOPE -->
+  <div class="section">
+
+    <h2>6. Scope Visualization</h2>
+
+    <div class="concept">
+      Scope decides where variables can be accessed.
+    </div>
+
+    <div class="visual">
+
+      <div class="box global-box">
+        GLOBAL SCOPE
+      </div>
+
+      <div class="box function-box">
+        FUNCTION SCOPE
+      </div>
+
+      <div class="box block-box">
+        BLOCK SCOPE
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCOPE DEMO -->
+  <div class="section">
+
+    <h2>7. Live Scope Demonstration</h2>
+
+    <button onclick="showScopes()">Run Scope Demo</button>
+
+    <div class="output" id="scopeOutput"></div>
+
+  </div>
+
+  <!-- WHERE TO USE -->
+  <div class="section">
+
+    <h2>8. Where Should We Use Them?</h2>
+
+    <div class="scope-container">
+
+      <div class="scope-box global">
+        <h3>Use const</h3>
+
+        <p>
+          Default choice.<br><br>
+
+          Use when value should NOT change.
+        </p>
+
+        <br>
+
+        <code>
+          const PI = 3.14;
+        </code>
+
+      </div>
+
+      <div class="scope-box function">
+        <h3>Use let</h3>
+
+        <p>
+          Use when value WILL change.
+        </p>
+
+        <br>
+
+        <code>
+          let score = 0;
+        </code>
+
+      </div>
+
+      <div class="scope-box block">
+        <h3>Avoid var</h3>
+
+        <p>
+          Old JavaScript way.<br><br>
+
+          Can cause scope confusion.
+        </p>
+
+        <br>
+
+        <code>
+          var x = 10;
+        </code>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    // WHY VARIABLES
+    function showWhyVariables(){
+
+      let studentName = "Krishna";
+      let age = 22;
+
+      document.getElementById("whyOutput").innerHTML =
+
+      "Variables store information.\n\n" +
+
+      "studentName = " + studentName + "\n" +
+
+      "age = " + age;
+    }
+
+    // VAR DEMO
+    function showVar(){
+
+      var message = "Original Value";
+
+      var message = "Redeclared Value";
+
+      if(true){
+
+        var city = "Hyderabad";
+      }
+
+      document.getElementById("varOutput").innerHTML =
+
+      "var allows redeclaration.\n\n" +
+
+      "message = " + message + "\n\n" +
+
+      "var inside block is still accessible outside.\n\n" +
+
+      "city = " + city;
+    }
+
+    // LET DEMO
+    function showLet(){
+
+      let score = 50;
+
+      score = 100;
+
+      let output =
+
+      "let allows updating.\n\n" +
+
+      "Updated score = " + score + "\n\n";
+
+      if(true){
+
+        let blockVariable = "Inside Block";
+
+        output +=
+
+        "Inside block:\n" +
+
+        blockVariable;
+      }
+
+      output +=
+
+      "\n\nOutside block:\n" +
+
+      "blockVariable is NOT accessible.";
+
+      document.getElementById("letOutput").innerHTML = output;
+    }
+
+    // CONST DEMO
+    function showConst(){
+
+      const country = "India";
+
+      let output =
+
+      "const creates fixed values.\n\n" +
+
+      "country = " + country + "\n\n" +
+
+      "Reassignment is NOT allowed.\n\n";
+
+      output +=
+
+      "Example:\n" +
+
+      "const PI = 3.14";
+
+      document.getElementById("constOutput").innerHTML = output;
+    }
+
+    // SCOPE DEMO
+    function showScopes(){
+
+      let output = "";
+
+      // GLOBAL
+      let globalVariable = "I am Global";
+
+      function demoFunction(){
+
+        let functionVariable = "I am Function Scope";
+
+        output +=
+
+        "Inside Function:\n" +
+
+        globalVariable + "\n" +
+
+        functionVariable + "\n\n";
+
+        if(true){
+
+          let blockVariable = "I am Block Scope";
+
+          output +=
+
+          "Inside Block:\n" +
+
+          globalVariable + "\n" +
+
+          functionVariable + "\n" +
+
+          blockVariable + "\n\n";
+        }
+
+        output +=
+
+        "Outside Block:\n" +
+
+        "blockVariable NOT accessible here.\n\n";
+      }
+
+      demoFunction();
+
+      output +=
+
+      "Outside Function:\n" +
+
+      globalVariable + "\n\n" +
+
+      "functionVariable NOT accessible here.";
+
+      document.getElementById("scopeOutput").innerHTML = output;
+    }
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Responsive Cards</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#eef2f7;
+            padding:40px;
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:50px;
+        }
+
+        .title h1{
+            font-size:50px;
+            color:#111827;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+            max-width:1200px;
+            margin:auto;
+        }
+
+        .card{
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 20px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .content{
+            padding:25px;
+        }
+
+        .content h2{
+            margin-bottom:15px;
+            color:#2563eb;
+        }
+
+        .content p{
+            color:#555;
+            line-height:1.7;
+        }
+
+        .content button{
+            margin-top:20px;
+            padding:12px 25px;
+            border:none;
+            background:#2563eb;
+            color:white;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="title">
+
+        <h1>Responsive Cards</h1>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <img src="https://picsum.photos/id/1015/500/300" alt="image">
+
+            <div class="content">
+
+                <h2>Web Design</h2>
+
+                <p>
+                    Learn modern responsive web design
+                    using HTML and CSS.
+                </p>
+
+                <button>Read More</button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <img src="https://picsum.photos/id/1025/500/300" alt="image">
+
+            <div class="content">
+
+                <h2>Frontend Development</h2>
+
+                <p>
+                    Build interactive user interfaces
+                    with modern technologies.
+                </p>
+
+                <button>Read More</button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <img src="https://picsum.photos/id/1035/500/300" alt="image">
+
+            <div class="content">
+
+                <h2>UI/UX Design</h2>
+
+                <p>
+                    Create beautiful and user friendly
+                    website experiences.
+                </p>
+
+                <button>Read More</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

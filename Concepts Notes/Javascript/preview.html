@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Fundamentals Demo</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:#f4f4f4;
+        color:#222;
+        line-height:1.6;
+    }
+
+    header{
+        background:#222;
+        color:white;
+        padding:20px;
+        text-align:center;
+    }
+
+    nav{
+        background:#444;
+        padding:10px;
+        text-align:center;
+    }
+
+    nav a{
+        color:white;
+        text-decoration:none;
+        margin:0 15px;
+        font-weight:bold;
+    }
+
+    section{
+        background:white;
+        margin:20px;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        margin-bottom:10px;
+        color:#333;
+    }
+
+    button{
+        padding:10px 15px;
+        margin-top:10px;
+        border:none;
+        background:#007bff;
+        color:white;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#0056b3;
+    }
+
+    input{
+        padding:10px;
+        width:250px;
+        margin-top:10px;
+    }
+
+    .output{
+        margin-top:15px;
+        padding:10px;
+        background:#eee;
+        border-radius:5px;
+    }
+
+    footer{
+        text-align:center;
+        padding:15px;
+        background:#222;
+        color:white;
+        margin-top:20px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Fundamentals Demo</h1>
+    <p>Interactive Frontend Examples using JavaScript</p>
+</header>
+
+<nav>
+    <a href="#variables">Variables</a>
+    <a href="#operators">Operators</a>
+    <a href="#strings">Strings</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#age">Age Calculator</a>
+</nav>
+
+<section id="variables">
+    <h2>Variables and Data Types</h2>
+    <button onclick="showVariables()">Show Variables</button>
+    <div class="output" id="variableOutput"></div>
+</section>
+
+<section id="operators">
+    <h2>Arithmetic Operations</h2>
+    <button onclick="calculate()">Calculate 20 + 10</button>
+    <div class="output" id="calcOutput"></div>
+</section>
+
+<section id="strings">
+    <h2>String Manipulation</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="showGreeting()">Generate Greeting</button>
+    <div class="output" id="greetingOutput"></div>
+</section>
+
+<section id="calculator">
+    <h2>Simple Calculator</h2>
+    <input type="number" id="num1" placeholder="First Number">
+    <input type="number" id="num2" placeholder="Second Number">
+    <button onclick="addNumbers()">Add Numbers</button>
+    <div class="output" id="sumOutput"></div>
+</section>
+
+<section id="age">
+    <h2>Age Calculator</h2>
+    <input type="number" id="birthYear" placeholder="Enter Birth Year">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div class="output" id="ageOutput"></div>
+</section>
+
+<footer>
+    <p>JavaScript Fundamentals Practical Demo</p>
+</footer>
+
+<script>
+    function showVariables(){
+        let name = "JavaScript";
+        let version = 2025;
+        let isPopular = true;
+
+        document.getElementById("variableOutput").innerHTML =
+        `Language: ${name} <br>
+         Version: ${version} <br>
+         Popular: ${isPopular}`;
+    }
+
+    function calculate(){
+        let result = 20 + 10;
+        document.getElementById("calcOutput").innerHTML =
+        "20 + 10 = " + result;
+    }
+
+    function showGreeting(){
+        let userName = document.getElementById("nameInput").value;
+
+        document.getElementById("greetingOutput").innerHTML =
+        `Hello, ${userName}! Welcome to JavaScript.`;
+    }
+
+    function addNumbers(){
+        let n1 = Number(document.getElementById("num1").value);
+        let n2 = Number(document.getElementById("num2").value);
+
+        let total = n1 + n2;
+
+        document.getElementById("sumOutput").innerHTML =
+        "Sum = " + total;
+    }
+
+    function calculateAge(){
+        let year = Number(document.getElementById("birthYear").value);
+        let currentYear = new Date().getFullYear();
+
+        let age = currentYear - year;
+
+        document.getElementById("ageOutput").innerHTML =
+        "Your Age is " + age;
+    }
+</script>
+
+</body>
+</html>

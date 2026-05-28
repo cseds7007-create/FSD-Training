@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Functions & Loops Visualizer</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      padding:20px;
+      color:#222;
+      line-height:1.6;
+    }
+
+    h1{
+      text-align:center;
+      color:#0d6efd;
+      margin-bottom:30px;
+    }
+
+    .section{
+      background:white;
+      padding:20px;
+      margin-bottom:25px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .section h2{
+      color:#0d6efd;
+      margin-bottom:10px;
+    }
+
+    .concept{
+      background:#eef4ff;
+      border-left:5px solid #0d6efd;
+      padding:12px;
+      margin:12px 0;
+      border-radius:6px;
+    }
+
+    button{
+      padding:10px 18px;
+      border:none;
+      background:#0d6efd;
+      color:white;
+      border-radius:6px;
+      cursor:pointer;
+      margin-top:10px;
+      font-size:15px;
+    }
+
+    button:hover{
+      background:#084298;
+    }
+
+    .output{
+      margin-top:15px;
+      background:#1e1e1e;
+      color:#00ff99;
+      padding:15px;
+      border-radius:8px;
+      min-height:50px;
+      white-space:pre-line;
+      overflow:auto;
+    }
+
+    .array-box{
+      display:flex;
+      gap:10px;
+      margin-top:15px;
+      flex-wrap:wrap;
+    }
+
+    .cell{
+      width:60px;
+      height:60px;
+      background:#0d6efd;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      font-size:20px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .highlight{
+      background:#198754 !important;
+      transform:scale(1.1);
+    }
+
+    table{
+      border-collapse:collapse;
+      margin-top:15px;
+    }
+
+    td{
+      border:1px solid #333;
+      padding:10px;
+      text-align:center;
+      width:50px;
+      height:50px;
+      background:#e9f2ff;
+    }
+
+    code{
+      background:#eee;
+      padding:2px 5px;
+      border-radius:4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>JavaScript Concepts Visualization</h1>
+
+  <!-- FUNCTIONS -->
+  <div class="section">
+    <h2>1. Functions</h2>
+
+    <div class="concept">
+      Functions are reusable blocks of code.
+    </div>
+
+    <button onclick="showFunction()">Run Function</button>
+
+    <div class="output" id="functionOutput"></div>
+  </div>
+
+  <!-- PARAMETERS -->
+  <div class="section">
+    <h2>2. Parameters & Arguments</h2>
+
+    <div class="concept">
+      Parameters receive values.<br>
+      Arguments are values passed into the function.
+    </div>
+
+    <button onclick="showParameters()">Show Parameters</button>
+
+    <div class="output" id="parameterOutput"></div>
+  </div>
+
+  <!-- RETURN VALUES -->
+  <div class="section">
+    <h2>3. Return Values</h2>
+
+    <div class="concept">
+      Functions can return values using <code>return</code>.
+    </div>
+
+    <button onclick="showReturn()">Show Return Value</button>
+
+    <div class="output" id="returnOutput"></div>
+  </div>
+
+  <!-- ARRAYS -->
+  <div class="section">
+    <h2>4. Arrays</h2>
+
+    <div class="concept">
+      Arrays store multiple values in a single variable.
+    </div>
+
+    <button onclick="showArray()">Visualize Array</button>
+
+    <div class="array-box" id="arrayContainer"></div>
+
+    <div class="output" id="arrayOutput"></div>
+  </div>
+
+  <!-- ARRAY OPERATIONS -->
+  <div class="section">
+    <h2>5. Array Operations</h2>
+
+    <div class="concept">
+      Common Operations:
+      <ul>
+        <li>push()</li>
+        <li>pop()</li>
+        <li>shift()</li>
+        <li>unshift()</li>
+      </ul>
+    </div>
+
+    <button onclick="showArrayOperations()">Run Operations</button>
+
+    <div class="output" id="arrayOpOutput"></div>
+  </div>
+
+  <!-- WHILE LOOP -->
+  <div class="section">
+    <h2>6. While Loops</h2>
+
+    <div class="concept">
+      A while loop runs while a condition is true.
+    </div>
+
+    <button onclick="runWhileLoop()">Run While Loop</button>
+
+    <div class="output" id="whileOutput"></div>
+  </div>
+
+  <!-- FOR LOOP -->
+  <div class="section">
+    <h2>7. For Loops</h2>
+
+    <div class="concept">
+      For loops are used when the number of iterations is known.
+    </div>
+
+    <button onclick="runForLoop()">Run For Loop</button>
+
+    <div class="output" id="forOutput"></div>
+  </div>
+
+  <!-- NESTED LOOP -->
+  <div class="section">
+    <h2>8. Nested Loops</h2>
+
+    <div class="concept">
+      A loop inside another loop is called a nested loop.
+    </div>
+
+    <button onclick="runNestedLoop()">Generate Pattern</button>
+
+    <div id="nestedTable"></div>
+
+    <div class="output" id="nestedOutput"></div>
+  </div>
+
+
+  <script>
+
+    // FUNCTIONS
+    function greet(){
+      return "Hello Students! Welcome to JavaScript Functions.";
+    }
+
+    function showFunction(){
+      document.getElementById("functionOutput").innerHTML =
+      "Function Executed Successfully!\n\n" + greet();
+    }
+
+    // PARAMETERS & ARGUMENTS
+    function addNumbers(a,b){
+      return a+b;
+    }
+
+    function showParameters(){
+
+      let result = addNumbers(10,20);
+
+      document.getElementById("parameterOutput").innerHTML =
+      "Function: addNumbers(a,b)\n\n" +
+      "Arguments Passed: 10 and 20\n" +
+      "Result: " + result;
+    }
+
+    // RETURN VALUES
+    function square(num){
+      return num*num;
+    }
+
+    function showReturn(){
+
+      let value = square(5);
+
+      document.getElementById("returnOutput").innerHTML =
+      "square(5)\n\nReturned Value: " + value;
+    }
+
+    // ARRAYS
+    function showArray(){
+
+      let fruits = ["Apple","Mango","Orange","Banana"];
+
+      let container = document.getElementById("arrayContainer");
+
+      container.innerHTML = "";
+
+      fruits.forEach((fruit,index)=>{
+
+        let div = document.createElement("div");
+
+        div.classList.add("cell");
+
+        div.innerHTML = index;
+
+        container.appendChild(div);
+      });
+
+      document.getElementById("arrayOutput").innerHTML =
+      "Array:\n\n" +
+      JSON.stringify(fruits,null,2) +
+      "\n\nIndexes are visualized above.";
+    }
+
+    // ARRAY OPERATIONS
+    function showArrayOperations(){
+
+      let nums = [10,20,30];
+
+      let output = "Original Array: " + nums + "\n\n";
+
+      nums.push(40);
+      output += "After push(40): " + nums + "\n";
+
+      nums.pop();
+      output += "After pop(): " + nums + "\n";
+
+      nums.unshift(5);
+      output += "After unshift(5): " + nums + "\n";
+
+      nums.shift();
+      output += "After shift(): " + nums + "\n";
+
+      document.getElementById("arrayOpOutput").innerHTML = output;
+    }
+
+    // WHILE LOOP
+    function runWhileLoop(){
+
+      let i = 1;
+
+      let output = "";
+
+      while(i<=5){
+
+        output += "Iteration : " + i + "\n";
+
+        i++;
+      }
+
+      document.getElementById("whileOutput").innerHTML = output;
+    }
+
+    // FOR LOOP
+    function runForLoop(){
+
+      let output = "";
+
+      for(let i=1;i<=5;i++){
+
+        output += "For Loop Count : " + i + "\n";
+      }
+
+      document.getElementById("forOutput").innerHTML = output;
+    }
+
+    // NESTED LOOP
+    function runNestedLoop(){
+
+      let tableHTML = "<table>";
+
+      let output = "";
+
+      for(let i=1;i<=5;i++){
+
+        tableHTML += "<tr>";
+
+        for(let j=1;j<=5;j++){
+
+          tableHTML += `<td>${i*j}</td>`;
+
+          output += `(${i},${j}) `;
+        }
+
+        tableHTML += "</tr>";
+
+        output += "\n";
+      }
+
+      tableHTML += "</table>";
+
+      document.getElementById("nestedTable").innerHTML = tableHTML;
+
+      document.getElementById("nestedOutput").innerHTML =
+      "Nested Loop Coordinates:\n\n" + output;
+    }
+
+  </script>
+
+</body>
+</html>

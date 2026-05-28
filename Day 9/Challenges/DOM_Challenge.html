@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>DOM Challenge</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1{
+    margin-bottom:20px;
+    color:#111827;
+}
+
+.info{
+    background:#dbeafe;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:30px;
+}
+
+textarea{
+    width:100%;
+    height:300px;
+    border:none;
+    border-radius:15px;
+    background:#111827;
+    color:#38bdf8;
+    padding:20px;
+    font-size:16px;
+    font-family:monospace;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+iframe{
+    width:100%;
+    height:250px;
+    margin-top:25px;
+    border-radius:15px;
+    border:2px solid #ccc;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>DOM Challenge</h1>
+
+<div class="info">
+
+<p>
+Practice DOM manipulation using JavaScript.
+Students can modify elements dynamically.
+</p>
+
+</div>
+
+<textarea id="code">
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="title">
+Hello Students
+</h1>
+
+<button onclick="changeText()">
+Change Heading
+</button>
+
+<script>
+
+function changeText(){
+
+document.getElementById("title")
+.innerHTML = "DOM Manipulated Successfully";
+
+}
+
+</script>
+
+</body>
+</html>
+</textarea>
+
+<button onclick="runCode()">
+Run Code
+</button>
+
+<iframe id="output"></iframe>
+
+</div>
+
+<script>
+
+function runCode(){
+
+document.getElementById("output").srcdoc =
+document.getElementById("code").value;
+
+}
+
+</script>
+
+</body>
+</html>

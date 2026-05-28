@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Function Utilities</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+textarea{
+    width:100%;
+    height:300px;
+    margin-top:20px;
+    padding:20px;
+    font-family:monospace;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+}
+
+iframe{
+    width:100%;
+    height:250px;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Function Based Utilities</h1>
+
+<p>
+Functions help reuse code multiple times.
+</p>
+
+<textarea id="code">
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+function square(num){
+
+    return num * num;
+
+}
+
+document.write(square(5));
+
+</script>
+
+</body>
+</html>
+</textarea>
+
+<button onclick="runCode()">
+Run Program
+</button>
+
+<iframe id="output"></iframe>
+
+</div>
+
+<script>
+
+function runCode(){
+
+document.getElementById("output").srcdoc =
+document.getElementById("code").value;
+
+}
+
+</script>
+
+</body>
+</html>

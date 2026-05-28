@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Old Table Layout Demo</title>
+
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      margin:0;
+      padding:20px;
+    }
+
+    h1{
+      text-align:center;
+      color:#333;
+    }
+
+    p{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    /* Old Style Table Layout */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:white;
+      box-shadow:0 0 10px rgba(0,0,0,0.2);
+    }
+
+    td{
+      border:2px solid #ddd;
+      padding:20px;
+      vertical-align:top;
+    }
+
+    .header{
+      background:#4CAF50;
+      color:white;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .sidebar{
+      background:#ffcc80;
+      width:20%;
+    }
+
+    .content{
+      background:#e1f5fe;
+      width:60%;
+    }
+
+    .rightbar{
+      background:#f8bbd0;
+      width:20%;
+    }
+
+    .footer{
+      background:#333;
+      color:white;
+      text-align:center;
+      padding:15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Old Web Design Using Tables</h1>
+
+  <p>
+    Before Flexbox and CSS Grid, developers used HTML tables
+    to arrange website layouts into columns.
+  </p>
+
+  <!-- table used for the page layout -->
+  <table>
+
+    <!-- Header -->
+    <tr>
+      <td colspan="3" class="header">
+        My Old Website
+      </td>
+    </tr>
+
+    <!-- Main Content-->
+    <tr>
+
+      <!-- Left Sidebar -->
+      <td class="sidebar">
+        <h2>Menu</h2>
+
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Services</li>
+          <li>Contact</li>
+        </ul>
+      </td>
+
+      <!-- Center Content -->
+      <td class="content">
+        <h2>Main Content</h2>
+
+        <p>
+          In the early days of web development,
+          tables were commonly used to create
+          layouts with rows and columns.
+        </p>
+
+        <p>
+          This is similar to how Flexbox works today,
+          but tables were never meant for layout design.
+        </p>
+
+        <p>
+          Modern CSS techniques like Flexbox and Grid
+          are now used instead of tables.
+        </p>
+      </td>
+
+      <!-- Right Sidebar -->
+      <td class="rightbar">
+        <h2>News</h2>
+
+        <p>Latest Updates</p>
+        <p>New Products</p>
+        <p>Upcoming Events</p>
+      </td>
+
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td colspan="3" class="footer">
+        © 2002 My Old Website
+      </td>
+    </tr>
+
+  </table>
+
+</body>
+</html>

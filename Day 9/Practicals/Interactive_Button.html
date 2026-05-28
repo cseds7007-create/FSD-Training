@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Interactive Button Handling</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#141e30,#243b55);
+}
+
+.container{
+    width:500px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+    margin-bottom:20px;
+    font-size:40px;
+}
+
+p{
+    margin-bottom:30px;
+    color:#d1d5db;
+    line-height:1.8;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+#likeBtn{
+    background:#2563eb;
+    color:white;
+}
+
+#shareBtn{
+    background:#10b981;
+    color:white;
+}
+
+#subscribeBtn{
+    background:#ef4444;
+    color:white;
+}
+
+button:hover{
+    transform:translateY(-5px);
+}
+
+.output{
+    margin-top:30px;
+    font-size:24px;
+    color:#38bdf8;
+    min-height:40px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Interactive Buttons</h1>
+
+<p>
+Learn JavaScript button event handling using click events.
+</p>
+
+<div class="buttons">
+
+<button id="likeBtn" onclick="showMessage('You Liked the Post ')">
+Like
+</button>
+
+<button id="shareBtn" onclick="showMessage('Post Shared Successfully ')">
+Share
+</button>
+
+<button id="subscribeBtn" onclick="showMessage('Subscribed Successfully...Bro!')">
+Subscribe
+</button>
+
+</div>
+
+<div class="output" id="output"></div>
+
+</div>
+
+<script>
+
+function showMessage(message){
+
+document.getElementById("output").innerHTML =
+message;
+
+}
+
+</script>
+
+</body>
+</html>
