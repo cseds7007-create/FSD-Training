@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Training - Student Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background: #764ba2;
+            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.4);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .day-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .day-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .day-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .day-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .resource-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .resource-card.practicals {
+            border-left-color: #4CAF50;
+        }
+        
+        .resource-card.projects {
+            border-left-color: #ff9800;
+        }
+        
+        .resource-card.completed {
+            border-left-color: #2196F3;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            font-size: 1.8em;
+            margin-right: 12px;
+        }
+        
+        .resource-card h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin: 0;
+        }
+        
+        .resource-card p {
+            color: #666;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+        
+        .file-list {
+            background: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .file-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 0.9em;
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-item strong {
+            color: #667eea;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+        
+        .badge.completed {
+            background: #2196F3;
+        }
+        
+        .badge.in-progress {
+            background: #ff9800;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .instructions h4 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #333;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .tip {
+            background: #fff9c4;
+            border-left: 4px solid #FBC02D;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: #f57f17;
+        }
+        
+        .tip strong {
+            color: #f57f17;
+        }
+        
+        .learning-sequence {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .learning-sequence h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sequence-steps {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .sequence-step {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid #667eea;
+            color: #667eea;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        
+        .sequence-arrow {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .resource-card.exercises {
+            border-left-color: #9C27B0;
+        }
+        
+        .resource-card.challenges {
+            border-left-color: #E91E63;
+        }
+        
+        .netlify-section {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .netlify-section h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .netlify-section p {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .netlify-link {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .netlify-link:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        .folder-path {
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #d32f2f;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        /* Interactive Dropdown Menu Styles */
+        .file-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .file-item:hover {
+            background: #e8f5e9;
+            padding-left: 12px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .file-item-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .file-item-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .dropdown-indicator {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-indicator.expanded {
+            transform: rotate(180deg);
+        }
+
+        .file-sublist {
+            background: #fafafa;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 8px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .file-sublist.show {
+            max-height: 500px;
+            padding: 8px;
+        }
+
+        .file-subitem {
+            padding: 6px 10px;
+            margin: 4px 0;
+            background: white;
+            border-left: 3px solid #667eea;
+            border-radius: 3px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-subitem:hover {
+            background: #e3f2fd;
+            padding-left: 14px;
+        }
+
+        .file-link-icon {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            margin-left: 8px;
+            color: #667eea;
+            font-size: 0.9em;
+        }
+
+        .file-subitem:hover .file-link-icon {
+            opacity: 1;
+        }
+
+        .config-banner {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+
+        .config-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .config-input-group input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .config-input-group button {
+            padding: 8px 16px;
+            background: #ffc107;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .config-input-group button:hover {
+            background: #e0a800;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+            
+            .nav-btn {
+                width: 100%;
+            }
+            
+            .sequence-steps {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .sequence-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Full Stack Training</h1>
+            <p>Complete Reference Guide for Students</p>
+        </header>
+        
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showDay(1)">Day 1</button>
+            <button class="nav-btn" onclick="showDay(2)">Day 2</button>
+            <button class="nav-btn" onclick="showDay(3)">Day 3</button>
+            <button class="nav-btn" onclick="showDay(4)">Day 4</button>
+            <button class="nav-btn" onclick="showDay(5)">Day 5</button>
+            <button class="nav-btn" onclick="showDay(6)">Day 6</button>
+            <button class="nav-btn" onclick="showDay(7)">Day 7</button>
+            <button class="nav-btn" onclick="showDay(8)">Day 8</button>
+            <button class="nav-btn" onclick="showDay(9)">Day 9</button>
+            <button class="nav-btn" onclick="showDay(10)">Day 10</button>
+        </div>
+
+        <div class="config-banner">
+            <strong>⚙️ Configuration:</strong> Set your hosting URL below. Once deployed to Netlify or GitHub Pages, enter the URL here to enable all file links.
+            <div class="config-input-group">
+                <input type="text" id="baseURLInput" placeholder="e.g., https://your-site.netlify.app or https://username.github.io/repo">
+                <button onclick="setBaseURL()">💾 Save URL</button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- DAY 1 -->
+            <div id="day1" class="day-section active">
+                <div class="day-header">
+                    <h2>Day 1 - Internet & HTML Basics</h2>
+                    <p>Learn the fundamentals of HTML and how the internet works</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 1:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Practicals</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Projects</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 1/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Start with these foundational exercises:</p>
+                        <div class="file-list">
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.1 Heading Element</strong> - Learn HTML heading tags (h1-h6)
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Excersies/1.1%20Heading%20Element/index.html')">
+                                    <span>📄 View Exercise</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.2 Paragraph Element</strong> - Understand text content and paragraphs
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Excersies/1.2%20Paragraph%20Element/index.html')">
+                                    <span>📄 View Exercise</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 1/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Apply your learning in projects:</p>
+                        <div class="file-list">
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>1.3 Movie Ranking Project</strong> - Create a movie ranking webpage using HTML
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Projects/1.3%20Movie%20Ranking%20Project/index.html')">
+                                    <span>📄 View Project</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="badge">Practice Project</span>
+                    </div>
+                    
+                    <div class="resource-card challenges">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <h3>Challenges</h3>
+                        </div>
+                        <div class="folder-path">Day 1/Challenges/</div>
+                        <p style="color: #666; margin-top: 10px;">Test your skills with challenges:</p>
+                        <div class="file-list">
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Resume Challenge</strong> - Build a resume webpage
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Challenges/Resume_challenge.html')">
+                                    <span>📄 View Challenge</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="badge">in-progress">Challenge</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 1/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Additional learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>First_HTML_webpage.html</strong> - Introduction to HTML structure
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/First_HTML_webpage.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Headings_Paragraph.html</strong> - Practical examples
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/Headings_Paragraph.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+
+                            <div class="file-item" data-expandable="true">
+                                <span class="dropdown-indicator">📂</span>
+                                <strong>Personal_intro_Page.html</strong> - Create your personal intro page
+                            </div>
+                            <div class="file-sublist">
+                                <div class="file-subitem" onclick="openHostedFile(event, 'Day%201/Practicals/Personal_intro_Page.html')">
+                                    <span>📄 Open File</span>
+                                    <span class="file-link-icon">🔗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 2 -->
+            <div id="day2" class="day-section">
+                <div class="day-header">
+                    <h2>Day 2 - Intermediate HTML & Multi Page Websites</h2>
+                    <p>Build multi-page websites with proper HTML structure</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 2:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 2/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Master HTML structure and elements:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>2.1 List Elements</strong> - Learn ordered and unordered lists</div>
+                            <div class="file-item"><strong>2.2 Nesting and Indentation</strong> - Master HTML nesting structure</div>
+                            <div class="file-item"><strong>2.3 Anchor Elements</strong> - Create hyperlinks and navigation</div>
+                            <div class="file-item"><strong>2.4 Image Elements</strong> - Embed images in your pages</div>
+                            <div class="file-item"><strong>2.6 File Paths</strong> - Understand relative and absolute paths</div>
+                            <div class="file-item"><strong>2.7 Webpages</strong> - Create complete webpage structures</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 2/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build real websites:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>2.5 Birthday Invite Project</strong> - Create an interactive birthday invitation</div>
+                            <div class="file-item"><strong>2.8 HTML Portfolio Project</strong> - Build your portfolio website</div>
+                        </div>
+                        <span class="badge">Practice Projects</span>
+                    </div>
+                    
+                    <div class="resource-card challenges">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <h3>Challenges</h3>
+                        </div>
+                        <div class="folder-path">Day 2/Challenges/</div>
+                        <p style="color: #666; margin-top: 10px;">Challenge yourself:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Restaurant Menu</strong> - Create a restaurant menu webpage</div>
+                        </div>
+                        <span class="badge in-progress">Challenge</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 2/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Additional resources:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>home.html</strong> - Homepage example</div>
+                            <div class="file-item"><strong>about.html</strong> - About page example</div>
+                            <div class="file-item"><strong>contact.html</strong> - Contact page example</div>
+                            <div class="file-item"><strong>links_page.html</strong> - Navigation examples</div>
+                            <div class="file-item"><strong>image_gallery.html</strong> - Image gallery layout</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 3 -->
+            <div id="day3" class="day-section">
+                <div class="day-header">
+                    <h2>Day 3 - Introduction to CSS & Styling</h2>
+                    <p>Master CSS basics and bring your websites to life with styling</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 3:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 3/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Learn CSS fundamentals step by step:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>3.1 Adding CSS</strong> - Learn inline, internal, and external CSS</div>
+                            <div class="file-item"><strong>3.2 CSS Selectors</strong> - Master element, class, and ID selectors</div>
+                            <div class="file-item"><strong>3.4 CSS Colors</strong> - Understand color values and properties</div>
+                            <div class="file-item"><strong>3.5 Font Properties</strong> - Style typography and fonts</div>
+                            <div class="file-item"><strong>3.6 CSS Box Model</strong> - Learn margin, padding, and borders</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 3/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build styled websites:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>3.3 Color Vocab Project</strong> - Learn CSS colors with a color vocabulary site</div>
+                            <div class="file-item"><strong>3.7 Motivation Meme Project</strong> - Create styled motivational meme cards</div>
+                        </div>
+                        <span class="badge">Practice Projects</span>
+                    </div>
+                    
+                    <div class="resource-card challenges">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <h3>Challenges</h3>
+                        </div>
+                        <div class="folder-path">Day 3/Challenges/</div>
+                        <p style="color: #666; margin-top: 10px;">Test your CSS skills:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Product Card</strong> - Design a product card with CSS</div>
+                        </div>
+                        <span class="badge in-progress">Challenge</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 3/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Additional learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Portfolio_website.html</strong> - Styled portfolio example</div>
+                            <div class="file-item"><strong>Typegraphy_layouts.html</strong> - Typography and layout examples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 4 -->
+            <div id="day4" class="day-section">
+                <div class="day-header">
+                    <h2>Day 4 - Intermediate & Advanced CSS</h2>
+                    <p>Deep dive into CSS positioning, layouts, and advanced techniques</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 4:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 4/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Master advanced CSS concepts:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>4.1 CSS Cascade</strong> - Understand CSS specificity and cascade</div>
+                            <div class="file-item"><strong>4.2 Combining Selectors</strong> - Learn selector combinations</div>
+                            <div class="file-item"><strong>4.3 CSS Positioning</strong> - Master static, relative, absolute, fixed positioning</div>
+                            <div class="file-item"><strong>4.5 CSS Display</strong> - Learn block, inline, and inline-block properties</div>
+                            <div class="file-item"><strong>4.6 CSS Float</strong> - Understand floating elements and clearing</div>
+                            <div class="file-item"><strong>4.7 Responsiveness</strong> - Introduction to responsive design</div>
+                            <div class="file-item"><strong>4.8 Media Query</strong> - Create responsive layouts with media queries</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 4/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build advanced layouts:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>4.4 CSS Flag Project</strong> - Create flags using CSS positioning</div>
+                            <div class="file-item"><strong>4.9 Web Design Agency Project</strong> - Build a professional agency website</div>
+                        </div>
+                        <span class="badge">Practice Projects</span>
+                    </div>
+                    
+                    <div class="resource-card challenges">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <h3>Challenges</h3>
+                        </div>
+                        <div class="folder-path">Day 4/Challenges/</div>
+                        <p style="color: #666; margin-top: 10px;">Challenge yourself:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>YouTube Card Layout</strong> - Recreate YouTube card design with CSS</div>
+                        </div>
+                        <span class="badge in-progress">Challenge</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 4/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Additional resources:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Responsive_cards.html</strong> - Responsive card designs</div>
+                            <div class="file-item"><strong>Responsive_layout.html</strong> - Responsive layout examples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 5 -->
+            <div id="day5" class="day-section">
+                <div class="day-header">
+                    <h2>Day 5 - Flexbox, Grid & Bootstrap</h2>
+                    <p>Master modern CSS layout techniques</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 5:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 5/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Learn modern layout systems:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>5.1 Display Flex</strong> - Introduction to Flexbox</div>
+                            <div class="file-item"><strong>5.2 Flex Direction</strong> - Master flex direction and alignment</div>
+                            <div class="file-item"><strong>5.4 Display Grid</strong> - Introduction to CSS Grid</div>
+                            <div class="file-item"><strong>5.5 Grid Sizing</strong> - Learn grid sizing and columns</div>
+                            <div class="file-item"><strong>5.6 Grid Placement</strong> - Master grid item placement</div>
+                            <div class="file-item"><strong>5.8 Bootstrap Intro</strong> - Introduction to Bootstrap framework</div>
+                            <div class="file-item"><strong>5.9 Bootstrap Components</strong> - Bootstrap component usage</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 5/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build responsive layouts:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Pricing Section</strong> - Create pricing layouts with Flexbox/Grid</div>
+                            <div class="file-item"><strong>Responsive Gallery</strong> - Build image gallery with responsive design</div>
+                        </div>
+                        <span class="badge">Practice Projects</span>
+                    </div>
+                    
+                    <div class="resource-card challenges">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <h3>Challenges</h3>
+                        </div>
+                        <div class="folder-path">Day 5/Challenges/</div>
+                        <p style="color: #666; margin-top: 10px;">Challenge yourself:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Dashboard Layout</strong> - Create a dashboard with Flexbox/Grid</div>
+                            <div class="file-item"><strong>Responsive NavBar</strong> - Build a responsive navigation bar</div>
+                        </div>
+                        <span class="badge in-progress">Challenges</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 5/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Additional resources:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Pricing_section.html</strong> - Pricing section example</div>
+                            <div class="file-item"><strong>Responsive_gallery.html</strong> - Gallery examples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 6 -->
+            <div id="day6" class="day-section">
+                <div class="day-header">
+                    <h2>Day 6 - JavaScript Fundamentals</h2>
+                    <p>Introduction to JavaScript programming</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 6:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">4️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 6/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Learn JavaScript fundamentals:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>JavaScript Basics</strong> - Core JavaScript concepts and syntax</div>
+                            <div class="file-item"><strong>Variables & Data Types</strong> - Variable declaration and data types</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 6/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>JavaScript_fundamentals.html</strong> - Core concepts</div>
+                            <div class="file-item"><strong>Variables.html</strong> - Variable scope and data types</div>
+                            <div class="file-item"><strong>javascript.html</strong> - General fundamentals</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 7 -->
+            <div id="day7" class="day-section">
+                <div class="day-header">
+                    <h2>Day 7 - Functions, Arrays & Loops</h2>
+                    <p>Master JavaScript functions, arrays, and iterative programming</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 7:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 7/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Master functions and arrays:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Functions</strong> - Function declaration and parameters</div>
+                            <div class="file-item"><strong>Arrays & Loops</strong> - Arrays and iteration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 7/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build interactive projects:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Dice Game</strong> - Interactive dice rolling game</div>
+                        </div>
+                        <span class="badge">Practice Project</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 7/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>functions.html</strong> - Function examples</div>
+                            <div class="file-item"><strong>function_arrays_loops.html</strong> - Combined examples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 8 -->
+            <div id="day8" class="day-section">
+                <div class="day-header">
+                    <h2>Day 8 - ES6 Features & Modern JavaScript</h2>
+                    <p>Learn modern JavaScript features and best practices</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 8:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 8/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Learn modern JavaScript:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>ES6 Features</strong> - Arrow functions and modern syntax</div>
+                            <div class="file-item"><strong>Async Programming</strong> - Promises and callbacks</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 8/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>ES6_DOM_Events.html</strong> - ES6 features and DOM events</div>
+                            <div class="file-item"><strong>Promises.html</strong> - Promise handling</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 9 -->
+            <div id="day9" class="day-section">
+                <div class="day-header">
+                    <h2>Day 9 - DOM Manipulation & Events</h2>
+                    <p>Interact with web pages using JavaScript</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 9:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Challenges</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 9/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Master DOM manipulation:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>DOM Basics</strong> - Element selection and manipulation</div>
+                            <div class="file-item"><strong>Events</strong> - Event handling and listeners</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 9/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build interactive projects:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Drum Kit</strong> - Interactive drum machine with events</div>
+                        </div>
+                        <span class="badge">Practice Project</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 9/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Dom_demo.html</strong> - DOM demonstrations</div>
+                            <div class="file-item"><strong>Dom.html</strong> - DOM basics</div>
+                            <div class="file-item"><strong>ES6_DOM_Events.html</strong> - Events with modern JS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAY 10 -->
+            <div id="day10" class="day-section">
+                <div class="day-header">
+                    <h2>Day 10 - jQuery & Advanced DOM, UNIX Commands</h2>
+                    <p>Simplify JavaScript with jQuery and command line basics</p>
+                </div>
+                
+                <div class="learning-sequence">
+                    <h4>📚 Learning Path for Day 10:</h4>
+                    <div class="sequence-steps">
+                        <span class="sequence-step">1️⃣ Exercises</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">2️⃣ Projects</span>
+                        <span class="sequence-arrow">→</span>
+                        <span class="sequence-step">3️⃣ Practicals</span>
+                    </div>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-card exercises">
+                        <div class="card-header">
+                            <span class="card-icon">✏️</span>
+                            <h3>Exercises</h3>
+                        </div>
+                        <div class="folder-path">Day 10/Excersies/</div>
+                        <p style="color: #666; margin-top: 10px;">Learn jQuery and advanced techniques:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>jQuery Basics</strong> - jQuery library and selectors</div>
+                            <div class="file-item"><strong>Column Layouts (2 & 3)</strong> - Layout examples with jQuery</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card projects">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="folder-path">Day 10/Projects/</div>
+                        <p style="color: #666; margin-top: 10px;">Build interactive games:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>Simon Game Challenge</strong> - Interactive memory game with jQuery</div>
+                        </div>
+                        <span class="badge">Practice Project</span>
+                    </div>
+                    
+                    <div class="resource-card practicals">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <h3>Practicals</h3>
+                        </div>
+                        <div class="folder-path">Day 10/Practicals/</div>
+                        <p style="color: #666; margin-top: 10px;">Learning materials:</p>
+                        <div class="file-list">
+                            <div class="file-item"><strong>jQuery_Practicals_2Column.html</strong> - 2-column layout with jQuery</div>
+                            <div class="file-item"><strong>jQuery_Practicals_3Column.html</strong> - 3-column layout with jQuery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div class="netlify-section">
+            <h4>🚀 Deploy Your Learning Portal on Netlify</h4>
+            <p><strong>How to Deploy This Folder:</strong></p>
+            <ol style="margin-left: 20px; color: #555;">
+                <li>Go to <strong><a href="https://www.netlify.com" style="color: #4CAF50; text-decoration: none; font-weight: bold;" target="_blank">netlify.com</a></strong> and sign up (free account)</li>
+                <li>Download and install <strong><a href="https://git-scm.com" style="color: #4CAF50; text-decoration: none; font-weight: bold;" target="_blank">Git</a></strong> on your computer</li>
+                <li>Install <strong><a href="https://nodejs.org" style="color: #4CAF50; text-decoration: none; font-weight: bold;" target="_blank">Node.js</a></strong> (includes npm)</li>
+                <li>Open terminal/command prompt in this folder and run: <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">npm install -g netlify-cli</code></li>
+                <li>Run: <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">netlify deploy --prod</code></li>
+                <li>Follow the prompts and link to your GitHub account</li>
+                <li>Your site will be live! Share the Netlify link with students</li>
+            </ol>
+            <p style="margin-top: 15px; color: #2e7d32;"><strong>✅ Once deployed, all files will be accessible from the Netlify URL</strong></p>
+            <p style="color: #666; margin-top: 10px;"><strong>Tip:</strong> Every time you update this folder, run <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">netlify deploy --prod</code> again to push updates to your live site.</p>
+        </div> -->
+        
+        <footer>
+            <p><strong>📝 Quick Reference Guide for Full Stack Training</strong></p>
+            <p>📚 <strong>Learning Sequence:</strong> Exercises → Projects → Challenges → Practicals</p>
+            <p>📂 <strong>Folder Structure:</strong> Each Day has Exercise, Project, Challenge, and Practical folders</p>
+            <p>✅ <strong>Complete all exercises first</strong> before moving to projects for best learning outcomes</p>
+            <p>🚀 <strong>Deployment Options:</strong> 
+                <a href="DEPLOYMENT_GUIDE.md" style="color: #667eea; text-decoration: none; font-weight: bold;">View Complete Guide</a> 
+                | Netlify (Recommended) | GitHub Pages | Auto-Deploy on Git Push
+            </p>
+            <p style="margin-top: 15px; color: #999;">Last Updated: May 2026 | Questions? Refer to the materials in each day's folder</p>
+        </footer>
+    </div>
+    
+    <script>
+        // ===== CONFIGURATION =====
+        // Change this to your Netlify URL or GitHub Pages URL
+        let baseURL = localStorage.getItem('baseURL') || 'https://your-netlify-site.netlify.app';
+
+        function setBaseURL() {
+            const newURL = document.getElementById('baseURLInput').value.trim();
+            if (newURL) {
+                baseURL = newURL;
+                localStorage.setItem('baseURL', newURL);
+                alert('Base URL updated successfully!\n\nNow all file links will point to:\n' + baseURL);
+                location.reload();
+            } else {
+                alert('Please enter a valid URL');
+            }
+        }
+
+        // Update input field on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('baseURLInput');
+            if (input) {
+                input.value = baseURL;
+            }
+        });
+
+        function showDay(dayNum) {
+            // Hide all day sections
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById('day' + i).classList.remove('active');
+            }
+            
+            // Show selected day
+            document.getElementById('day' + dayNum).classList.add('active');
+            
+            // Update active button
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach((btn, index) => {
+                if (index === dayNum - 1) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Scroll to top
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        // Dropdown Toggle Functionality
+        function toggleDropdown(element) {
+            const parentItem = element.closest('.file-item');
+            const sublist = parentItem.nextElementSibling;
+            const indicator = element.querySelector('.dropdown-indicator');
+
+            if (sublist && sublist.classList.contains('file-sublist')) {
+                sublist.classList.toggle('show');
+                indicator.classList.toggle('expanded');
+            }
+        }
+
+        // Open hosted file
+        function openHostedFile(event, filePath) {
+            event.stopPropagation();
+            const fullURL = baseURL.replace(/\/$/, '') + '/' + filePath;
+            window.open(fullURL, '_blank');
+        }
+
+        // Initialize file items with dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileItems = document.querySelectorAll('.file-item[data-expandable="true"]');
+            fileItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (e.target.closest('.file-item-link')) return;
+                    toggleDropdown(this);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
